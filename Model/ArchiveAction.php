@@ -6,7 +6,7 @@
  * Time: 14:38
  */
 
-namespace devgiants\AdminBundle\Model;
+namespace LCH\AdminBundle\Model;
 
 
 class ArchiveAction extends Action

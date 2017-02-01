@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ path('devgiants_app_homepage') }}" target="blank" >
+                    <a class="navbar-brand" href="{{ path('LCH_app_homepage') }}" target="blank" >
                         {% if currentSite != null %}
                             {% if currentSite.logo %}
                                 <img src="{{ currentSite.logo.url }}" alt="{{ currentSite.logo.alt }}"/>
@@ -82,9 +82,9 @@
                                 <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{path('devgiants_user_admin_change_password')}}">{{ "admin.user.change-password"|trans }}</a></li>
+                                <li><a href="{{path('LCH_user_admin_change_password')}}">{{ "admin.user.change-password"|trans }}</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('devgiants_user_admin_logout') }}" class="text-danger">{{ "admin.user.logout"|trans }}</a></li>
+                                <li><a href="{{ path('LCH_user_admin_logout') }}" class="text-danger">{{ "admin.user.logout"|trans }}</a></li>
                             </ul>
                         </li>
                     </ul>

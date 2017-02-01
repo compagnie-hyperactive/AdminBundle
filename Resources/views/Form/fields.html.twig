@@ -116,7 +116,7 @@
             data-target="#myModal-{{form.vars.name}}-{{rand}}" 
             id="addMedia-{{form.vars.name}}-{{rand}}" 
             class="btn btn-default" 
-            data-url='{{path('devgiants_media_admin_list_add_media')}}'
+            data-url='{{path('LCH_media_admin_list_add_media')}}'
             type="button"
             input-target = '{{form.vars.name}}'
             {{ block('button_attributes') }}
@@ -175,7 +175,7 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block devgiants_catalogbundle_offer_image_carroussel_widget %}
+{% block LCH_catalogbundle_offer_image_carroussel_widget %}
     {% spaceless %}
         <li>
             <table class="table">
@@ -189,7 +189,7 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block devgiants_catalogbundle_offer_image_carroussel_mobile_widget %}
+{% block LCH_catalogbundle_offer_image_carroussel_mobile_widget %}
     {% spaceless %}
         <li>
             <table class="table">
@@ -203,7 +203,7 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block devgiants_catalogbundle_slogan_widget %}
+{% block LCH_catalogbundle_slogan_widget %}
     {% spaceless %}
         <li>
             <div class="row">
@@ -215,7 +215,7 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block devgiants_catalogbundle_tab_widget %}
+{% block LCH_catalogbundle_tab_widget %}
     {% spaceless %}
         <div class="row">
             <div class="col-md-2">{{form_label(form.title)}}</div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace devgiants\AdminBundle\Event\Subscriber\Sortable;
+namespace LCH\AdminBundle\Event\Subscriber\Sortable;
 
 use Knp\Component\Pager\Event\ItemsEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

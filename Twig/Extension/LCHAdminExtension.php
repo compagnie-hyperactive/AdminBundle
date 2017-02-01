@@ -1,19 +1,20 @@
 <?php
 
-namespace devgiants\AdminBundle\Twig\Extension;
+namespace LCH\AdminBundle\Twig\Extension;
 
-use devgiants\AdminBundle\Exception\MissingGetterException;
+use LCH\AdminBundle\Event\RenderListRowStateEvent;
+use LCH\AdminBundle\Exception\MissingGetterException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use devgiants\AdminBundle\Event\AdminEvents;
-use devgiants\AdminBundle\Event\RenderListEvent;
-use devgiants\AdminBundle\Event\RenderListEventAfter;
-use devgiants\AdminBundle\Event\RenderListEventBefore;
-use devgiants\AdminBundle\Event\RenderListHeaderEvent;
-use devgiants\AdminBundle\Event\RenderListRowActionsEvent;
-use devgiants\AdminBundle\Event\RenderListRowCellEvent;
-use devgiants\AdminBundle\Event\RenderListRowEvent;
-use devgiants\AdminBundle\Event\RenderPreHeaderEvent;
-use devgiants\AdminBundle\Exception\MissingOptionException;
+use LCH\AdminBundle\Event\AdminEvents;
+use LCH\AdminBundle\Event\RenderListEvent;
+use LCH\AdminBundle\Event\RenderListEventAfter;
+use LCH\AdminBundle\Event\RenderListEventBefore;
+use LCH\AdminBundle\Event\RenderListHeaderEvent;
+use LCH\AdminBundle\Event\RenderListRowActionsEvent;
+use LCH\AdminBundle\Event\RenderListRowCellEvent;
+use LCH\AdminBundle\Event\RenderListRowEvent;
+use LCH\AdminBundle\Event\RenderPreHeaderEvent;
+use LCH\AdminBundle\Exception\MissingOptionException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
@@ -26,7 +27,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class AdminExtension
  */
-class AdminExtension extends \Twig_Extension
+class LCHAdminExtension extends \Twig_Extension
 {
 
     private static $mandatoryOptions = [
@@ -93,6 +94,7 @@ class AdminExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
+        // TODO add function.filter to check entity class (eq. to instanceof)
         return array(
             'renderPreHeader' => new \Twig_SimpleFunction(
                 'renderPreHeader',
@@ -156,13 +158,13 @@ class AdminExtension extends \Twig_Extension
         $listEvent = new RenderListEvent($records, $options, $this->tokenStorage->getToken());
         // Dispatch render list event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_LIST_PREFIX . strtoupper($options['entity']['name']), $listEvent
+            AdminEvents::RENDER_LIST_PREFIX . $options['entity']['name'], $listEvent
         );
-        
-        // Must redifine $options here because it's an array (case where options are removed)
+        // Bring back options as array not updated by reference
         $options = $listEvent->getOptions();
 
-        return $this->twig->render("devgiantsAdminBundle:List:table.html.twig", ['records' => $records, "options" => $options]);
+
+        return $this->twig->render("LCHAdminBundle:List:table.html.twig", ['records' => $records, "options" => $options]);
     }
 
     /**
@@ -176,10 +178,12 @@ class AdminExtension extends \Twig_Extension
         $headerEvent = new RenderListHeaderEvent($records, $options);
         // Dispatch render list event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_HEADER_PREFIX . strtoupper($options['entity']['name']), $headerEvent
+            AdminEvents::RENDER_HEADER_PREFIX . $options['entity']['name'], $headerEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $headerEvent->getOptions();
 
-        return $this->twig->render("devgiantsAdminBundle:List:header.html.twig", ['records' => $records, "options" => $options]);
+        return $this->twig->render("LCHAdminBundle:List:header.html.twig", ['records' => $records, "options" => $options]);
     }
 
     /**
@@ -193,60 +197,86 @@ class AdminExtension extends \Twig_Extension
         $rowEvent = new RenderListRowEvent($record, $options);
         // Dispatch render list row event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_ROW_PREFIX . strtoupper($options['entity']['name']), $rowEvent
+            AdminEvents::RENDER_ROW_PREFIX . $options['entity']['name'], $rowEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $rowEvent->getOptions();
 
-        return $this->twig->render("devgiantsAdminBundle:List:row.html.twig", ['record' => $record, "options" => $options]);
+        return $this->twig->render("LCHAdminBundle:List:row.html.twig", ['record' => $record, "options" => $options]);
     }
 
     /**
      * Render an cell in a row
-     * @param mixed $record
-     * @param string $field
-     * @param string $value
-     * @param array $options
+     * @param mixed $record the concerned record
+     * @param string $field the field name
+     * @param array $fieldConfiguration the field configuration
+     * @param array $options the list options
      * @return string
      */
-    public function renderCell($record, $field, $value, array $options) {
+    public function renderCell($record, $field, $fieldConfiguration, array $options) {
 
-        $cellEvent = new RenderListRowCellEvent($record, $field, $value, $options);
-        // Dispatch render list row cell event
-        $this->dispatcher->dispatch(
-            AdminEvents::RENDER_CELL_PREFIX . strtoupper($options['entity']['name']), $cellEvent
-        );
-
-
+        
         // Classic fields
         // TODO remove ugly hard-coded fields names
         if($field != 'stateFields') {
+
+            // Handle value computation/alteration
+//            $cellEvent = $this->computeRecordValue($record, $field, $fieldConfiguration, $options);
+
+
+            // Check field existance and readability
             $this->checkField($record, $field);
-            return $this->twig->render("devgiantsAdminBundle:List:cell.html.twig", ['field' => $field, 'value' => $this->propertyAccessor->getValue($record, $field), "options" => $options]);
+
+            // Get current value
+            $cellValue = $this->propertyAccessor->getValue($record, $field);
+
+            $cellEvent = new RenderListRowCellEvent($record, $field, $fieldConfiguration, $cellValue, $options);
+            // Dispatch render list row cell event
+            $this->dispatcher->dispatch(
+                AdminEvents::RENDER_CELL_PREFIX . $options['entity']['name'], $cellEvent
+            );
+            
+            return $this->twig->render("LCHAdminBundle:List:cell.html.twig", [
+                    'field' => $field,
+                    'value' => $cellEvent->getValue(),
+                    'options' => $cellEvent->getOptions()
+                ]
+            );
         }
         else {
             $mergedValue = "";
-            foreach($value['fields'] as $fieldName => $fieldParams) {
+            foreach($fieldConfiguration['fields'] as $fieldName => $fieldParams) {
 
                 $this->checkField($record, $fieldName);
 
+                // Get current value
+                $stateValue = $this->propertyAccessor->getValue($record, $fieldName);
+
+                $stateEvent = new RenderListRowStateEvent($record, $field, $fieldConfiguration, $options);
+                // Dispatch render list row cell event
+                $this->dispatcher->dispatch(
+                    AdminEvents::RENDER_ROW_STATE_PREFIX . $options['entity']['name'], $stateEvent
+                );
+
                 // TODO set constants for all fields names. Find a cool way to use Twig with
+                $mergedValue .= $this->twig->render("LCHAdminBundle:List:state.html.twig", ['stateValue' => $stateEvent->getFieldConfiguration(), 'fieldParams' => $fieldParams]);
+//                if(!isset($fieldParams['logic']) || isset($fieldParams['logic']) && $fieldParams['logic'] ) {
+//                    if($stateValue) {
+//                        $mergedValue .= "<span class='label label-success'>{$this->translator->trans($fieldParams['active_label'])}</span> ";
+//                    } else {
+//                        $mergedValue .= "<span class='label label-danger'>{$this->translator->trans($fieldParams['inactive_label'])}</span> ";
+//                    }
 
-                if(!isset($fieldParams['logic']) || isset($fieldParams['logic']) && $fieldParams['logic'] ) {
-                    if($this->propertyAccessor->getValue($record, $fieldName)) {
-                        $mergedValue .= "<span class='label label-success'>{$this->translator->trans($fieldParams['active_label'])}</span> ";
-                    } else {
-                        $mergedValue .= "<span class='label label-danger'>{$this->translator->trans($fieldParams['inactive_label'])}</span> ";
-                    }
-
-                } else {
-                    if(!$this->propertyAccessor->getValue($record, $fieldName)) {
-                        $mergedValue .= "<span class='label label-success'>{$this->translator->trans($fieldParams['active_label'])}</span> ";
-                    } else {
-                        $mergedValue .= "<span class='label label-danger'>{$this->translator->trans($fieldParams['inactive_label'])}</span> ";
-                    }
-                }
+//                } else {
+//                    if(!$stateValue) {
+//                        $mergedValue .= "<span class='label label-success'>{$this->translator->trans($fieldParams['active_label'])}</span> ";
+//                    } else {
+//                        $mergedValue .= "<span class='label label-danger'>{$this->translator->trans($fieldParams['inactive_label'])}</span> ";
+//                    }
+//                }
 
             }
-            return $this->twig->render("devgiantsAdminBundle:List:cell.html.twig", ['field' => $field, 'value' => $mergedValue, "options" => $options]);
+            return $this->twig->render("LCHAdminBundle:List:cell.html.twig", ['field' => $field, 'value' => $mergedValue, "options" => $options]);
         }
     }
 
@@ -263,8 +293,10 @@ class AdminExtension extends \Twig_Extension
         $this->dispatcher->dispatch(
             AdminEvents::RENDER_ACTIONS_PREFIX . $options['entity']['name'], $actionEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $actionEvent->getOptions();
 
-        return $this->twig->render("devgiantsAdminBundle:List:actions.html.twig", ['record' => $record, "options" => $options, 'actions' => $actionEvent->getActions()]);
+        return $this->twig->render("LCHAdminBundle:List:actions.html.twig", ['record' => $record, "options" => $options, 'actions' => $actionEvent->getActions()]);
     }
 
 
@@ -277,8 +309,10 @@ class AdminExtension extends \Twig_Extension
         $beforeListEvent = new RenderListEventBefore($records, $options);
         // Dispatch render list event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_LIST_BEFORE_PREFIX . strtoupper($options['entity']['name']), $beforeListEvent
+            AdminEvents::RENDER_LIST_BEFORE_PREFIX . $options['entity']['name'], $beforeListEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $beforeListEvent->getOptions();
 
         // TODO find a more industrial way to display additional stuff
         return $beforeListEvent->getOutput();
@@ -293,8 +327,10 @@ class AdminExtension extends \Twig_Extension
         $preHeaderEvent = new RenderPreHeaderEvent($records, $options);
         // Dispatch specific render list event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_PRE_HEADER_PREFIX . strtoupper($options['entity']['name']), $preHeaderEvent
+            AdminEvents::RENDER_PRE_HEADER_PREFIX . $options['entity']['name'], $preHeaderEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $preHeaderEvent->getOptions();
 
         // TODO find a more industrial way to display additional stuff
         return $preHeaderEvent->getOutput();
@@ -309,8 +345,10 @@ class AdminExtension extends \Twig_Extension
         $afterListEvent = new RenderListEventAfter($records, $options);
         // Dispatch render list event
         $this->dispatcher->dispatch(
-            AdminEvents::RENDER_LIST_AFTER_PREFIX . strtoupper($options['entity']['name']), $afterListEvent
+            AdminEvents::RENDER_LIST_AFTER_PREFIX . $options['entity']['name'], $afterListEvent
         );
+        // Bring back options as array not updated by reference
+        $options = $afterListEvent->getOptions();
 
         // TODO find a more industrial way to display additional stuff
         return $afterListEvent->getOutput();
@@ -324,5 +362,29 @@ class AdminExtension extends \Twig_Extension
         if(!$this->propertyAccessor->isReadable($object, $field)) {
             throw new MissingGetterException("{$field} doesn't exist on object");
         }
+    }
+
+    /**
+     * @param mixed $record the concerned record
+     * @param string $field the field name
+     * @param array $fieldConfiguration the field configuration
+     * @param array $options the list options
+     * @return RenderListRowCellEvent
+     */
+    private function computeRecordValue($record, $field, $fieldConfiguration, $options) {
+
+        // Check field existance and readability
+        $this->checkField($record, $field);
+
+        // Get current value
+        $cellValue = $this->propertyAccessor->getValue($record, $field);
+
+        $cellEvent = new RenderListRowCellEvent($record, $field, $fieldConfiguration, $cellValue, $options);
+        // Dispatch render list row cell event
+        $this->dispatcher->dispatch(
+            AdminEvents::RENDER_CELL_PREFIX . $options['entity']['name'], $cellEvent
+        );
+
+        return $cellEvent;
     }
 }

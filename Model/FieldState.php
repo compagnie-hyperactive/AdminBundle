@@ -6,7 +6,7 @@
  * Time: 16:10
  */
 
-namespace devgiants\AdminBundle\Model;
+namespace LCH\AdminBundle\Model;
 
 
 class FieldState

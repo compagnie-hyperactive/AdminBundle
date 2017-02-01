@@ -5,7 +5,7 @@
  * Date: 18/05/15
  * Time: 16:01
  */
-namespace devgiants\AdminBundle\Event;
+namespace LCH\AdminBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Knp\Menu\FactoryInterface;

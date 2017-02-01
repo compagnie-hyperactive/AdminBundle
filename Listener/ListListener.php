@@ -6,13 +6,13 @@
  * Time: 15:36
  */
 
-namespace devgiants\AdminBundle\Listener;
+namespace LCH\AdminBundle\Listener;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
-use devgiants\AdminBundle\Event\RenderListRowActionsEvent;
-use devgiants\AdminBundle\Model\AdminIcons;
-use devgiants\AdminBundle\Model\Action;
+use LCH\AdminBundle\Event\RenderListRowActionsEvent;
+use LCH\AdminBundle\Model\AdminIcons;
+use LCH\AdminBundle\Model\Action;
 
 abstract class ListListener
 {

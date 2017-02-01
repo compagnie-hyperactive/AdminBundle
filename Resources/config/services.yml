@@ -1,17 +1,17 @@
 parameters:
-    devgiants.admin.twig.extension: devgiants\AdminBundle\Twig\Extension\AdminExtension
+    lch.admin.twig.extension: 'LCH\AdminBundle\Twig\Extension\LCHAdminExtension'
 
 
 services:
-#    devgiants.admin.menu_builder.super_admin:
-#        class: devgiants\AdminBundle\Menu\MenuBuilder
+#    LCH.admin.menu_builder.super_admin:
+#        class: LCH\AdminBundle\Menu\MenuBuilder
 #        arguments: ["@knp_menu.factory", "@security.token_storage", "@service_container"]
 #        tags:
 #            - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
 
     # Twig Extensions
-    devgiants.twig_extension.admin:
-        class: "%devgiants.admin.twig.extension%"
+    lch.twig_extension.admin:
+        class: "%lch.admin.twig.extension%"
         public: false
         arguments: ["@doctrine.orm.entity_manager", '@session', "@twig", "@event_dispatcher", "@security.token_storage", '@translator']
         tags:

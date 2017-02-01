@@ -1,13 +1,13 @@
 <?php
 
-namespace devgiants\AdminBundle\Form;
+namespace LCH\AdminBundle\Form;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use devgiants\AppBundle\Form\SearchType as BaseType;
+use LCH\AppBundle\Form\SearchType as BaseType;
 
 class searchAdminType extends BaseType
 {
@@ -22,7 +22,7 @@ class searchAdminType extends BaseType
     {
         parent::buildForm($builder, $options);
 
-        $datas = $this->container->getParameter('devgiants_app.searchEngine.back');
+        $datas = $this->container->getParameter('LCH_app.searchEngine.back');
 
         $choicesList = [];
         foreach ($datas as $entity => $config) {

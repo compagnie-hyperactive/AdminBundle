@@ -3,7 +3,7 @@ CKEditor WebSpellChecker Plugin
 
 This plugin brings Web Spell Checker (WSC) into CKEditor.
 
-WSC is "installation-less", using the web-services of [WebSpellChecker.net](http://www.webspeldevgiantsecker.net/). It's an out of the box solution.
+WSC is "installation-less", using the web-services of [WebSpellChecker.net](http://www.webspelLCHecker.net/). It's an out of the box solution.
 
 Installation
 ------------
@@ -22,4 +22,4 @@ Licensed under the terms of any of the following licenses at your choice: [GPL](
 
 See LICENSE.md for more information.
 
-Developed in cooperation with [WebSpellChecker.net](http://www.webspeldevgiantsecker.net/).
+Developed in cooperation with [WebSpellChecker.net](http://www.webspelLCHecker.net/).

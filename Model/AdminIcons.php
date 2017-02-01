@@ -6,7 +6,7 @@
  * Time: 17:36
  */
 
-namespace devgiants\AdminBundle\Model;
+namespace LCH\AdminBundle\Model;
 
 
 class AdminIcons

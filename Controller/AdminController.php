@@ -1,11 +1,11 @@
 <?php
 
-namespace devgiants\AdminBundle\Controller;
+namespace LCH\AdminBundle\Controller;
 
-use devgiants\AdminBundle\Form\ArchiveType;
-use devgiants\AdminBundle\Form\UnarchiveType;
-use devgiants\AdminBundle\Form\DeleteType;
-use devgiants\MultisiteBundle\Entity\Site;
+use LCH\AdminBundle\Form\ArchiveType;
+use LCH\AdminBundle\Form\UnarchiveType;
+use LCH\AdminBundle\Form\DeleteType;
+use LCH\MultisiteBundle\Entity\Site;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;

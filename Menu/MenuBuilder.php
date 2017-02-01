@@ -1,13 +1,13 @@
 <?php
 
-namespace devgiants\AdminBundle\Menu;
+namespace LCH\AdminBundle\Menu;
 
 use Knp\Menu\ItemInterface;
-use devgiants\UserBundle\Entity\User;
+use LCH\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use devgiants\AdminBundle\Event\AdminEvents;
-use devgiants\AdminBundle\Event\GenerateMenuEvent;
+use LCH\AdminBundle\Event\AdminEvents;
+use LCH\AdminBundle\Event\GenerateMenuEvent;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,7 +72,7 @@ class MenuBuilder implements ContainerAwareInterface
         else if($user->hasRole(User::ROLE_ADMIN)) {
             $menu->setUri($this->container->get('request')->getRequestUri());
             $menu->addChild($this->container->get('translator')->trans('admin.dashboard.menu'), array(
-                'route' => 'devgiants_admin_dashboard',
+                'route' => 'LCH_admin_dashboard',
             ));
 
             // TODO set cache for menu generation
@@ -140,7 +140,7 @@ class MenuBuilder implements ContainerAwareInterface
 //
 //        $menu->setUri($this->container->get('request')->getRequestUri());
 //        $menu->addChild($this->container->get('translator')->trans('admin.dashboard.menu'), array(
-//            'route' => 'devgiants_admin_dashboard',
+//            'route' => 'LCH_admin_dashboard',
 //        ));
 //
 //        // TODO set cache for menu generation

@@ -33,12 +33,12 @@ if (!empty($_POST))
 			continue;
 
 		if ( get_magic_quotes_gpc() )
-			$value = htmlspeciadevgiantsars( stripslashes((string)$value) );
+			$value = htmlspeciaLCHars( stripslashes((string)$value) );
 		else
-			$value = htmlspeciadevgiantsars( (string)$value );
+			$value = htmlspeciaLCHars( (string)$value );
 ?>
 		<tr>
-			<th style="vertical-align: top"><?php echo htmlspeciadevgiantsars( (string)$key ); ?></th>
+			<th style="vertical-align: top"><?php echo htmlspeciaLCHars( (string)$key ); ?></th>
 			<td><pre class="samples"><?php echo $value; ?></pre></td>
 		</tr>
 	<?php

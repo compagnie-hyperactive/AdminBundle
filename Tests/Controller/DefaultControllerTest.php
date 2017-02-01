@@ -1,6 +1,6 @@
 <?php
 
-namespace devgiants\AdminBundle\Tests\Controller;
+namespace LCH\AdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

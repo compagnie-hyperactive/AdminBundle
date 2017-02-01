@@ -5,24 +5,18 @@
  * Date: 18/05/15
  * Time: 16:01
  */
-namespace devgiants\AdminBundle\Event;
+namespace LCH\AdminBundle\Event;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Symfony\Component\EventDispatcher\Event;
-use Knp\Menu\FactoryInterface;
-use Knp\Menu\ItemInterface;
 
-class RenderListEventAfter extends Event
+class RenderListEventAfter extends ListEvent
 {
 
     /**
      * @var PaginationInterface The list records
      */
     private $records;
-    /**
-     * @var string the list options
-     */
-    private $options;
+
     /**
      * @var string the HTML output to display before list
      */
@@ -35,7 +29,7 @@ class RenderListEventAfter extends Event
     public function __construct(PaginationInterface $records, array $options)
     {
         $this->records = $records;
-        $this->options = $options;
+        parent::__construct($options);
     }
 
     /**
@@ -71,24 +65,6 @@ class RenderListEventAfter extends Event
     public function setRecords($records)
     {
         $this->records = $records;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * @param string $options
-     * @return RenderListEvent
-     */
-    public function setOptions($options)
-    {
-        $this->options = $options;
         return $this;
     }
 

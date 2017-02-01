@@ -6,10 +6,10 @@
  * Time: 17:06
  */
 
-namespace devgiants\AdminBundle\Model;
+namespace LCH\AdminBundle\Model;
 
 
-use devgiants\AdminBundle\Exception\ActionTypeNotValidException;
+use LCH\AdminBundle\Exception\ActionTypeNotValidException;
 
 class Action
 {

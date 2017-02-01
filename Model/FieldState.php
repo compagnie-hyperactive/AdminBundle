@@ -6,7 +6,7 @@
  * Time: 16:10
  */
 
-namespace LCH\AdminBundle\Model;
+namespace Lch\AdminBundle\Model;
 
 
 class FieldState

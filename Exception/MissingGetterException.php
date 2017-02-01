@@ -6,7 +6,7 @@
  * Time: 17:04
  */
 
-namespace LCH\AdminBundle\Exception;
+namespace Lch\AdminBundle\Exception;
 
 
 use Symfony\Component\Config\Definition\Exception\Exception;

@@ -6,7 +6,7 @@
  * Time: 17:36
  */
 
-namespace LCH\AdminBundle\Model;
+namespace Lch\AdminBundle\Model;
 
 
 class AdminIcons

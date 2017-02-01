@@ -6,13 +6,13 @@
  * Time: 15:36
  */
 
-namespace LCH\AdminBundle\Listener;
+namespace Lch\AdminBundle\Listener;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
-use LCH\AdminBundle\Event\RenderListRowActionsEvent;
-use LCH\AdminBundle\Model\AdminIcons;
-use LCH\AdminBundle\Model\Action;
+use Lch\AdminBundle\Event\RenderListRowActionsEvent;
+use Lch\AdminBundle\Model\AdminIcons;
+use Lch\AdminBundle\Model\Action;
 
 abstract class ListListener
 {

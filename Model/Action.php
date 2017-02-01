@@ -6,10 +6,10 @@
  * Time: 17:06
  */
 
-namespace LCH\AdminBundle\Model;
+namespace Lch\AdminBundle\Model;
 
 
-use LCH\AdminBundle\Exception\ActionTypeNotValidException;
+use Lch\AdminBundle\Exception\ActionTypeNotValidException;
 
 class Action
 {

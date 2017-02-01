@@ -1,10 +1,10 @@
 parameters:
-    lch.admin.twig.extension: 'LCH\AdminBundle\Twig\Extension\LCHAdminExtension'
+    lch.admin.twig.extension: 'Lch\AdminBundle\Twig\Extension\LchAdminExtension'
 
 
 services:
-#    LCH.admin.menu_builder.super_admin:
-#        class: LCH\AdminBundle\Menu\MenuBuilder
+#    Lch.admin.menu_builder.super_admin:
+#        class: Lch\AdminBundle\Menu\MenuBuilder
 #        arguments: ["@knp_menu.factory", "@security.token_storage", "@service_container"]
 #        tags:
 #            - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }

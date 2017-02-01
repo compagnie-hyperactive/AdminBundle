@@ -1,6 +1,6 @@
 <?php
 
-namespace LCH\AdminBundle\Event\Subscriber\Sortable;
+namespace Lch\AdminBundle\Event\Subscriber\Sortable;
 
 use \ReflectionClass;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

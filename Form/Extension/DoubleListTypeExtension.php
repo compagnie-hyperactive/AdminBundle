@@ -6,7 +6,7 @@
  * Time: 12:00.
  */
 
-namespace LCH\AdminBundle\Form\Extension;
+namespace Lch\AdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;

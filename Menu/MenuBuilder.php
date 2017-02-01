@@ -1,13 +1,13 @@
 <?php
 
-namespace LCH\AdminBundle\Menu;
+namespace Lch\AdminBundle\Menu;
 
 use Knp\Menu\ItemInterface;
-use LCH\UserBundle\Entity\User;
+use Lch\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use LCH\AdminBundle\Event\AdminEvents;
-use LCH\AdminBundle\Event\GenerateMenuEvent;
+use Lch\AdminBundle\Event\AdminEvents;
+use Lch\AdminBundle\Event\GenerateMenuEvent;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;

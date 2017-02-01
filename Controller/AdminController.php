@@ -1,11 +1,11 @@
 <?php
 
-namespace LCH\AdminBundle\Controller;
+namespace Lch\AdminBundle\Controller;
 
-use LCH\AdminBundle\Form\ArchiveType;
-use LCH\AdminBundle\Form\UnarchiveType;
-use LCH\AdminBundle\Form\DeleteType;
-use LCH\MultisiteBundle\Entity\Site;
+use Lch\AdminBundle\Form\ArchiveType;
+use Lch\AdminBundle\Form\UnarchiveType;
+use Lch\AdminBundle\Form\DeleteType;
+use Lch\MultisiteBundle\Entity\Site;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;

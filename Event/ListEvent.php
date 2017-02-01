@@ -6,7 +6,7 @@
  * Time: 09:41
  */
 
-namespace LCH\AdminBundle\Event;
+namespace Lch\AdminBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 

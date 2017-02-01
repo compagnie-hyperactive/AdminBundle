@@ -1,6 +1,6 @@
 <?php
 
-namespace LCH\AdminBundle\Form;
+namespace Lch\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

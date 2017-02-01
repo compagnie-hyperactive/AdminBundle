@@ -1,13 +1,13 @@
 <?php
 
-namespace LCH\AdminBundle\Form;
+namespace Lch\AdminBundle\Form;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use LCH\AppBundle\Form\SearchType as BaseType;
+use Lch\AppBundle\Form\SearchType as BaseType;
 
 class searchAdminType extends BaseType
 {

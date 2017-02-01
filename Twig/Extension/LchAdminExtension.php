@@ -1,20 +1,20 @@
 <?php
 
-namespace LCH\AdminBundle\Twig\Extension;
+namespace Lch\AdminBundle\Twig\Extension;
 
-use LCH\AdminBundle\Event\RenderListRowStateEvent;
-use LCH\AdminBundle\Exception\MissingGetterException;
+use Lch\AdminBundle\Event\RenderListRowStateEvent;
+use Lch\AdminBundle\Exception\MissingGetterException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use LCH\AdminBundle\Event\AdminEvents;
-use LCH\AdminBundle\Event\RenderListEvent;
-use LCH\AdminBundle\Event\RenderListEventAfter;
-use LCH\AdminBundle\Event\RenderListEventBefore;
-use LCH\AdminBundle\Event\RenderListHeaderEvent;
-use LCH\AdminBundle\Event\RenderListRowActionsEvent;
-use LCH\AdminBundle\Event\RenderListRowCellEvent;
-use LCH\AdminBundle\Event\RenderListRowEvent;
-use LCH\AdminBundle\Event\RenderPreHeaderEvent;
-use LCH\AdminBundle\Exception\MissingOptionException;
+use Lch\AdminBundle\Event\AdminEvents;
+use Lch\AdminBundle\Event\RenderListEvent;
+use Lch\AdminBundle\Event\RenderListEventAfter;
+use Lch\AdminBundle\Event\RenderListEventBefore;
+use Lch\AdminBundle\Event\RenderListHeaderEvent;
+use Lch\AdminBundle\Event\RenderListRowActionsEvent;
+use Lch\AdminBundle\Event\RenderListRowCellEvent;
+use Lch\AdminBundle\Event\RenderListRowEvent;
+use Lch\AdminBundle\Event\RenderPreHeaderEvent;
+use Lch\AdminBundle\Exception\MissingOptionException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
@@ -27,7 +27,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class AdminExtension
  */
-class LCHAdminExtension extends \Twig_Extension
+class LchAdminExtension extends \Twig_Extension
 {
 
     private static $mandatoryOptions = [
@@ -164,7 +164,7 @@ class LCHAdminExtension extends \Twig_Extension
         $options = $listEvent->getOptions();
 
 
-        return $this->twig->render("LCHAdminBundle:List:table.html.twig", ['records' => $records, "options" => $options]);
+        return $this->twig->render("LchAdminBundle:List:table.html.twig", ['records' => $records, "options" => $options]);
     }
 
     /**
@@ -183,7 +183,7 @@ class LCHAdminExtension extends \Twig_Extension
         // Bring back options as array not updated by reference
         $options = $headerEvent->getOptions();
 
-        return $this->twig->render("LCHAdminBundle:List:header.html.twig", ['records' => $records, "options" => $options]);
+        return $this->twig->render("LchAdminBundle:List:header.html.twig", ['records' => $records, "options" => $options]);
     }
 
     /**
@@ -202,7 +202,7 @@ class LCHAdminExtension extends \Twig_Extension
         // Bring back options as array not updated by reference
         $options = $rowEvent->getOptions();
 
-        return $this->twig->render("LCHAdminBundle:List:row.html.twig", ['record' => $record, "options" => $options]);
+        return $this->twig->render("LchAdminBundle:List:row.html.twig", ['record' => $record, "options" => $options]);
     }
 
     /**
@@ -236,7 +236,7 @@ class LCHAdminExtension extends \Twig_Extension
                 AdminEvents::RENDER_CELL_PREFIX . $options['entity']['name'], $cellEvent
             );
             
-            return $this->twig->render("LCHAdminBundle:List:cell.html.twig", [
+            return $this->twig->render("LchAdminBundle:List:cell.html.twig", [
                     'field' => $field,
                     'value' => $cellEvent->getValue(),
                     'options' => $cellEvent->getOptions()
@@ -259,7 +259,7 @@ class LCHAdminExtension extends \Twig_Extension
                 );
 
                 // TODO set constants for all fields names. Find a cool way to use Twig with
-                $mergedValue .= $this->twig->render("LCHAdminBundle:List:state.html.twig", ['stateValue' => $stateEvent->getFieldConfiguration(), 'fieldParams' => $fieldParams]);
+                $mergedValue .= $this->twig->render("LchAdminBundle:List:state.html.twig", ['stateValue' => $stateEvent->getFieldConfiguration(), 'fieldParams' => $fieldParams]);
 //                if(!isset($fieldParams['logic']) || isset($fieldParams['logic']) && $fieldParams['logic'] ) {
 //                    if($stateValue) {
 //                        $mergedValue .= "<span class='label label-success'>{$this->translator->trans($fieldParams['active_label'])}</span> ";
@@ -276,7 +276,7 @@ class LCHAdminExtension extends \Twig_Extension
 //                }
 
             }
-            return $this->twig->render("LCHAdminBundle:List:cell.html.twig", ['field' => $field, 'value' => $mergedValue, "options" => $options]);
+            return $this->twig->render("LchAdminBundle:List:cell.html.twig", ['field' => $field, 'value' => $mergedValue, "options" => $options]);
         }
     }
 
@@ -296,7 +296,7 @@ class LCHAdminExtension extends \Twig_Extension
         // Bring back options as array not updated by reference
         $options = $actionEvent->getOptions();
 
-        return $this->twig->render("LCHAdminBundle:List:actions.html.twig", ['record' => $record, "options" => $options, 'actions' => $actionEvent->getActions()]);
+        return $this->twig->render("LchAdminBundle:List:actions.html.twig", ['record' => $record, "options" => $options, 'actions' => $actionEvent->getActions()]);
     }
 
 

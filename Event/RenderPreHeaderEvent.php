@@ -5,7 +5,7 @@
  * Date: 18/05/15
  * Time: 16:01
  */
-namespace LCH\AdminBundle\Event;
+namespace Lch\AdminBundle\Event;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 

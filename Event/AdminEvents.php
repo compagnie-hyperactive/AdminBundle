@@ -6,7 +6,7 @@
  * Time: 16:03
  */
 
-namespace LCH\AdminBundle\Event;
+namespace Lch\AdminBundle\Event;
 
 
 final class AdminEvents {

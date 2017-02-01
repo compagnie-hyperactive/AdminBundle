@@ -5,9 +5,9 @@
  * Date: 18/05/15
  * Time: 16:01
  */
-namespace LCH\AdminBundle\Event;
+namespace Lch\AdminBundle\Event;
 
-use LCH\AdminBundle\Model\Action;
+use Lch\AdminBundle\Model\Action;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class RenderListRowActionsEvent extends ListEvent

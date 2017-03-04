@@ -1,19 +1,20 @@
 parameters:
-    lch.admin.twig.extension: 'Lch\AdminBundle\Twig\Extension\LchAdminExtension'
+  lch.admin.twig.extension.class: 'Lch\AdminBundle\Twig\Extension\LchAdminExtension'
+  lch.admin.menu_builder.class: 'Lch\AdminBundle\Menu\MenuBuilder'
 
 
 services:
-#    Lch.admin.menu_builder.super_admin:
-#        class: Lch\AdminBundle\Menu\MenuBuilder
-#        arguments: ["@knp_menu.factory", "@security.token_storage", "@service_container"]
-#        tags:
-#            - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
+  lch.admin.menu_builder.admin:
+    class: "%lch.admin.menu_builder.class%"
+    arguments: ["@knp_menu.factory", "@security.token_storage", "@event_dispatcher"]
+    tags:
+      - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
 
-    # Twig Extensions
-    lch.twig_extension.admin:
-        class: "%lch.admin.twig.extension%"
-        public: false
-        arguments: ["@doctrine.orm.entity_manager", '@session', "@twig", "@event_dispatcher", "@security.token_storage", '@translator']
-        tags:
-            - { name: twig.extension }
-        lazy: true
+  # Twig Extensions
+  lch.twig_extension.admin:
+    class: "%lch.admin.twig.extension.class%"
+    public: false
+    arguments: ["@doctrine.orm.entity_manager", '@session', "@twig", "@event_dispatcher", "@security.token_storage", '@translator']
+    tags:
+      - { name: twig.extension }
+    lazy: true

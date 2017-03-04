@@ -20,11 +20,27 @@ body {
         }
       }
       #admin-screen {
-
+        h1 {
+          border-bottom: 1px solid #EEE;
+          padding-bottom: 15px;
+          margin-bottom: 15px;
+          i {
+            margin-right: 30px;
+          }
+        }
+        /************************************
+        * CKEditor
+        */
+        div.cke {
+          max-width: 100%;
+          float:left;
+          margin-left: 15px;
+        }
       }
     }
   }
 }
+
 
 // Scaffolding
 .row.no-gutter {

@@ -10,17 +10,15 @@ namespace Lch\AdminBundle\Event;
 
 
 final class AdminEvents {
-    const GENERATE_SUPER_ADMIN_MENU = "superadmin.generate_menu";
-    const GENERATE_ADMIN_MENU = "admin.generate_menu";
-    const GENERATE_PRODUCT_MANAGER_MENU = "product_manager.generate_menu";
+    const GENERATE_ADMIN_MENU = "lch.admin.generate_menu";
 
-    const RENDER_LIST_PREFIX = "admin.render.list.";
-    const RENDER_LIST_BEFORE_PREFIX = "admin.render.list.before.";
-    const RENDER_PRE_HEADER_PREFIX = "admin.render.pre.header.";
-    const RENDER_HEADER_PREFIX = "admin.render.list.header.";
-    const RENDER_ROW_PREFIX = "admin.render.list.row.";
-    const RENDER_ROW_STATE_PREFIX = "admin.render.list.row.state.";
-    const RENDER_CELL_PREFIX = "admin.render.list.cell.";
-    const RENDER_ACTIONS_PREFIX = "admin.render.list.row.actions.";
-    const RENDER_LIST_AFTER_PREFIX = "admin.render.list.after.";
+    const RENDER_LIST_PREFIX = "lch.admin.render.list.";
+    const RENDER_LIST_BEFORE_PREFIX = "lch.admin.render.list.before.";
+    const RENDER_PRE_HEADER_PREFIX = "lch.admin.render.pre.header.";
+    const RENDER_HEADER_PREFIX = "lch.admin.render.list.header.";
+    const RENDER_ROW_PREFIX = "lch.admin.render.list.row.";
+    const RENDER_ROW_STATE_PREFIX = "lch.admin.render.list.row.state.";
+    const RENDER_CELL_PREFIX = "lch.admin.render.list.cell.";
+    const RENDER_ACTIONS_PREFIX = "lch.admin.render.list.row.actions.";
+    const RENDER_LIST_AFTER_PREFIX = "lch.admin.render.list.after.";
 }

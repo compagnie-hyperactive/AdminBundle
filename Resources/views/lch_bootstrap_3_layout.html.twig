@@ -1,0 +1,50 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+
+{% block helper %}
+    {% if(form.vars.attr.helper is defined) %}
+        <p class="helper text-right"><i class="glyphicon glyphicon-question"></i>{{ form.vars.attr.helper }}</p>
+    {% endif %}
+{% endblock helper %}
+
+{%- block form_widget -%}
+    <div class="col-xs-12 col-md-10">
+        {{- parent() -}}
+        {{- block('helper') -}}
+    </div>
+{%- endblock form_widget -%}
+
+{% block form_row -%}
+    <div class="col-xs-12 no-gutter">
+        {{- parent() -}}
+        <hr class="col-xs-10 col-xs-offset-1">
+    </div>
+
+{%- endblock form_row %}
+
+{% block form_label -%}
+    <div class="col-xs-12 col-md-2">
+        {{- parent() -}}
+    </div>
+{%- endblock form_label %}
+
+
+{%- block collection_widget -%}
+    <div class="col-xs-12 col-md-10">
+        {{- parent() -}}
+        {{- block('helper') -}}
+    </div>
+{%- endblock collection_widget -%}
+
+{%- block textarea_widget -%}
+    <div class="col-xs-12 col-md-10">
+        {{- parent() -}}
+        {{- block('helper') -}}
+    </div>
+{%- endblock textarea_widget -%}
+
+{%- block choice_widget -%}
+    <div class="col-xs-12 col-md-10">
+        {{- parent() -}}
+        {{- block('helper') -}}
+    </div>
+{%- endblock choice_widget -%}

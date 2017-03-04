@@ -10,8 +10,9 @@ namespace Lch\AdminBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class GenerateMenuEvent extends Event
+class GenerateAdminMenuEvent extends Event
 {
     /**
      * @var FactoryInterface Interface implemented by the factory to create items
@@ -24,23 +25,23 @@ class GenerateMenuEvent extends Event
     private $menu;
 
     /**
-     * @var string the menu role target
+     * @var UserInterface
      */
-    private $role;
-
+    private $user;
 
     /**
-     * @param \Knp\Menu\FactoryInterface $factory
-     * @param \Knp\Menu\ItemInterface $menu
+     * @param FactoryInterface $factory
+     * @param ItemInterface $menu
+     * @param UserInterface $user user is well known as we are on admin part
      */
-    public function __construct(FactoryInterface $factory, ItemInterface $menu)
-    {
+    public function __construct(FactoryInterface $factory, ItemInterface $menu, UserInterface $user) {
         $this->factory = $factory;
         $this->menu = $menu;
+        $this->user = $user;
     }
 
     /**
-     * @return \Knp\Menu\FactoryInterface
+     * @return FactoryInterface
      */
     public function getFactory()
     {
@@ -48,7 +49,7 @@ class GenerateMenuEvent extends Event
     }
 
     /**
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
     public function getMenu()
     {

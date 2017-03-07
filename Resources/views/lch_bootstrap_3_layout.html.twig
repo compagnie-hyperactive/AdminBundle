@@ -54,20 +54,10 @@
 {%- endblock choice_widget -%}
 
 {%- block submit_widget -%}
-    {%- set attr = attr|merge({'class': 'btn-primary' })|merge({'icon': 'ok' }) -%}
+    {%- set attr = attr|merge({'class': 'btn-primary' })|merge({'icon': attr.icon|default('ok') }) -%}
     {{- parent() -}}
 {%- endblock submit_widget -%}
 
-
-{#{%- block return_button_widget -%}#}
-    {#{%- set attr = attr|merge({'icon': 'ok' }) -%}#}
-    {#{{- parent() -}}#}
-{#{%- endblock submit_widget -%}#}
-
-{#{%- block other_button_widget -%}#}
-    {#{%- set attr = attr|merge({'icon': 'ok' }) -%}#}
-    {#{{- parent() -}}#}
-{#{%- endblock submit_widget -%}#}
 
 {% block button_widget -%}
     {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
@@ -101,3 +91,4 @@
         </div>
     {%- endif %}
 {%- endblock form_errors %}
+

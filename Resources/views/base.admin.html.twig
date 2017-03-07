@@ -30,7 +30,7 @@
                             </div>
                         </header>
                         <div id="admin-screen" class="col-xs-12">
-                            <h1><i class="glyphicon glyphicon-star"></i>{% block h1 %}{{- block('title')  -}}{% endblock h1 %}</h1>
+                            <h1><i class="glyphicon glyphicon-{% block page_icon %}{% endblock page_icon %}"></i>{% block h1 %}{{- block('title')  -}}{% endblock h1 %}</h1>
                             {% block content %}{% endblock content %}
                         </div>
                     </div>

@@ -27,7 +27,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class AdminExtension
  */
-class LchAdminExtension extends \Twig_Extension
+class LchListAdminExtension extends \Twig_Extension
 {
 
     private static $mandatoryOptions = [

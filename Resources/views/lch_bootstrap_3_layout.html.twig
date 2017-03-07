@@ -1,21 +1,25 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
-{% block helper %}
+{%- block lch_form_footer -%}
     {% if(form.vars.attr.helper is defined) %}
-        <p class="helper text-right"><i class="glyphicon glyphicon-question"></i>{{ form.vars.attr.helper }}</p>
+        <p class="helper pull-right text-right col-xs-12 col-md-6"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper }}</p>
     {% endif %}
-{% endblock helper %}
+    {{ block('form_errors') }}
+{%- endblock lch_form_footer -%}
+
 
 {%- block form_widget -%}
     <div class="col-xs-12 col-md-10">
         {{- parent() -}}
-        {{- block('helper') -}}
+        {{- block('lch_form_footer') -}}
     </div>
 {%- endblock form_widget -%}
 
 {% block form_row -%}
     <div class="col-xs-12 no-gutter">
-        {{- parent() -}}
+        {#{{- parent() -}}#}
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
         <hr class="col-xs-10 col-xs-offset-1">
     </div>
 
@@ -31,20 +35,69 @@
 {%- block collection_widget -%}
     <div class="col-xs-12 col-md-10">
         {{- parent() -}}
-        {{- block('helper') -}}
+        {{- block('lch_form_footer') -}}
     </div>
 {%- endblock collection_widget -%}
 
 {%- block textarea_widget -%}
     <div class="col-xs-12 col-md-10">
         {{- parent() -}}
-        {{- block('helper') -}}
+        {{- block('lch_form_footer') -}}
     </div>
 {%- endblock textarea_widget -%}
 
 {%- block choice_widget -%}
     <div class="col-xs-12 col-md-10">
         {{- parent() -}}
-        {{- block('helper') -}}
+        {{- block('lch_form_footer') -}}
     </div>
 {%- endblock choice_widget -%}
+
+{%- block submit_widget -%}
+    {%- set attr = attr|merge({'class': 'btn-primary' })|merge({'icon': 'ok' }) -%}
+    {{- parent() -}}
+{%- endblock submit_widget -%}
+
+
+{#{%- block return_button_widget -%}#}
+    {#{%- set attr = attr|merge({'icon': 'ok' }) -%}#}
+    {#{{- parent() -}}#}
+{#{%- endblock submit_widget -%}#}
+
+{#{%- block other_button_widget -%}#}
+    {#{%- set attr = attr|merge({'icon': 'ok' }) -%}#}
+    {#{{- parent() -}}#}
+{#{%- endblock submit_widget -%}#}
+
+{% block button_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        {% if attr['icon'] is defined %}
+            <i class="glyphicon glyphicon-{{ attr['icon'] }}"></i>
+        {% endif %}
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+    </button>
+{%- endblock %}
+
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        <div class="errors alert alert-danger col-xs-12 col-md-6">
+            <ul class="list-unstyled">
+                {%- for error in errors -%}
+                    <li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message }}</li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    {%- endif %}
+{%- endblock form_errors %}

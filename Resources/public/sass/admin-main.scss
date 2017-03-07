@@ -28,19 +28,36 @@ body {
             margin-right: 30px;
           }
         }
+
+        .errors {
+          background: transparent;
+          border: none;
+          padding:0;
+        }
+
+        .submit-area {
+          a, button {
+            margin-right: 15px;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+        i {
+          margin-right: 5px;
+        }
         /************************************
         * CKEditor
         */
         div.cke {
           max-width: 100%;
           float:left;
-          margin-left: 15px;
+          margin-left: 5px;
         }
       }
     }
   }
 }
-
 
 // Scaffolding
 .row.no-gutter {

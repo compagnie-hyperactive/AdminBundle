@@ -7,13 +7,12 @@
  */
 namespace Lch\AdminBundle\Event;
 
-use Knp\Component\Pager\Pagination\PaginationInterface;
 
 class RenderListEventBefore extends ListEvent
 {
 
     /**
-     * @var PaginationInterface The list records
+     * @var  The list records
      */
     private $records;
 
@@ -23,10 +22,10 @@ class RenderListEventBefore extends ListEvent
     private $output;
 
     /**
-     * @param PaginationInterface $records
+     * @param  $records
      * @param array $options
      */
-    public function __construct(PaginationInterface $records, array $options)
+    public function __construct($records, array $options)
     {
         $this->records = $records;
         parent::__construct($options);
@@ -51,7 +50,7 @@ class RenderListEventBefore extends ListEvent
     }
 
     /**
-     * @return PaginationInterface
+     * @return 
      */
     public function getRecords()
     {
@@ -59,7 +58,7 @@ class RenderListEventBefore extends ListEvent
     }
 
     /**
-     * @param PaginationInterface $records
+     * @param  $records
      * @return RenderListEvent
      */
     public function setRecords($records)

@@ -4,7 +4,6 @@ namespace Lch\AdminBundle\Twig\Extension;
 
 use Lch\AdminBundle\Event\RenderListRowStateEvent;
 use Lch\AdminBundle\Exception\MissingGetterException;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Lch\AdminBundle\Event\AdminEvents;
 use Lch\AdminBundle\Event\RenderListEvent;
 use Lch\AdminBundle\Event\RenderListEventAfter;
@@ -143,11 +142,11 @@ class LchListAdminExtension extends \Twig_Extension
 
     /**
      * Render an entity list
-     * @param PaginationInterface $records
+     * @param $records
      * @param array $options
      * @return string
      */
-    public function renderList(PaginationInterface $records, array $options) {
+    public function renderList($records, array $options) {
 
         // Check for mandatory options in list
         foreach(self::$mandatoryOptions as $option => $explanation) {
@@ -169,11 +168,11 @@ class LchListAdminExtension extends \Twig_Extension
 
     /**
      * Render table header
-     * @param PaginationInterface $records
+     * @param $records
      * @param array $options
      * @return string
      */
-    public function renderHeader(PaginationInterface $records, array $options) {
+    public function renderHeader($records, array $options) {
 
         $headerEvent = new RenderListHeaderEvent($records, $options);
         // Dispatch render list event
@@ -301,11 +300,11 @@ class LchListAdminExtension extends \Twig_Extension
 
 
     /**
-     * @param PaginationInterface $records
+     * @param $records
      * @param array $options
      * @return string
      */
-    public function renderBeforeList(PaginationInterface $records, array $options) {
+    public function renderBeforeList($records, array $options) {
         $beforeListEvent = new RenderListEventBefore($records, $options);
         // Dispatch render list event
         $this->dispatcher->dispatch(
@@ -319,11 +318,11 @@ class LchListAdminExtension extends \Twig_Extension
     }
 
     /**
-     * @param PaginationInterface $records
+     * @param $records
      * @param array $options
      * @return string
      */
-    public function renderPreHeader(PaginationInterface $records, array $options) {
+    public function renderPreHeader($records, array $options) {
         $preHeaderEvent = new RenderPreHeaderEvent($records, $options);
         // Dispatch specific render list event
         $this->dispatcher->dispatch(
@@ -341,7 +340,7 @@ class LchListAdminExtension extends \Twig_Extension
      * @param array $options
      * @return string
      */
-    public function renderAfterList(PaginationInterface $records, array $options) {
+    public function renderAfterList($records, array $options) {
         $afterListEvent = new RenderListEventAfter($records, $options);
         // Dispatch render list event
         $this->dispatcher->dispatch(

@@ -21,6 +21,8 @@ class MenuBuilder implements ContainerAwareInterface
 
     const DATA_MENU_ROOT = "data-menu-root";
 
+    const ICON = 'icon';
+
     /**
      * @var FactoryInterface
      */

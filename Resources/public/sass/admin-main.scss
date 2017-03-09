@@ -7,8 +7,26 @@ body {
       color: $light-color;
       background-color: $dark-background-color;
       height: 100vh;
-      a {
-        color: $light-color;
+      padding-top: 50px;
+      ul {
+        list-style-type: none;
+        a {
+          color: $light-color;
+        }
+
+        > li {
+          padding: 15px 0;
+          > a {
+            font-size: 20px;
+          }
+          ul {
+            li {
+              a {
+                font-size: 15px;
+              }
+            }
+          }
+        }
       }
     }
     #page-content {
@@ -29,11 +47,23 @@ body {
           }
         }
 
+        p.helper {
+          color: gray;
+          font-size: 12px;
+        }
+
         .errors {
           background: transparent;
           border: none;
           padding:0;
         }
+
+        .collection-actions {
+          width: 100%;
+          text-align: right;
+          float: left;
+        }
+
 
         .submit-area {
           a, button {

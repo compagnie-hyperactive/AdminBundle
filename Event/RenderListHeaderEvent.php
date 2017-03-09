@@ -7,28 +7,27 @@
  */
 namespace Lch\AdminBundle\Event;
 
-use Knp\Component\Pager\Pagination\PaginationInterface;
 
 class RenderListHeaderEvent extends ListEvent
 {
     /**
-     * @var PaginationInterface The list records
+     * @var  The list records
      */
     private $records;
 
 
     /**
-     * @param PaginationInterface $records
+     * @param  $records
      * @param array $options
      */
-    public function __construct(PaginationInterface $records, array $options)
+    public function __construct( $records, array $options)
     {
         $this->records = $records;
         parent::__construct($options);
     }
 
     /**
-     * @return PaginationInterface
+     * @return 
      */
     public function getRecords()
     {
@@ -36,7 +35,7 @@ class RenderListHeaderEvent extends ListEvent
     }
 
     /**
-     * @param PaginationInterface $records
+     * @param  $records
      * @return RenderListHeaderEvent
      */
     public function setRecords($records)

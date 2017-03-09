@@ -7,14 +7,13 @@
  */
 namespace Lch\AdminBundle\Event;
 
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class RenderListEvent extends ListEvent
 {
 
     /**
-     * @var PaginationInterface The list records
+     * @var The list records
      */
     private $records;
 
@@ -24,11 +23,11 @@ class RenderListEvent extends ListEvent
     private $token;
 
     /**
-     * @param PaginationInterface $records
+     * @param $records
      * @param array $options
      * @param TokenInterface $token
      */
-    public function __construct(PaginationInterface $records, array $options, TokenInterface $token)
+    public function __construct($records, array $options, TokenInterface $token)
     {
         $this->records = $records;
         $this->token = $token;
@@ -45,7 +44,7 @@ class RenderListEvent extends ListEvent
     }
 
     /**
-     * @return PaginationInterface
+     * @return
      */
     public function getRecords()
     {
@@ -53,7 +52,7 @@ class RenderListEvent extends ListEvent
     }
 
     /**
-     * @param PaginationInterface $records
+     * @param $records
      * @return RenderListEvent
      */
     public function setRecords($records)

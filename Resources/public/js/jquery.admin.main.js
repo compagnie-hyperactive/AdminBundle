@@ -1,33 +1,29 @@
 /**
  * Created by nicolas on 22/05/15.
  */
-/*
- (function ( $ ) {
- UI = {
- adminInit: function () {
 
- }
+// common Jquery Symfony Collections options
+var jQuerySymfonyCollectionCommonOptions = {
+    up: '<a href="#" class="btn btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>',
+    down: '<a href="#" class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i></a>',
+    add: '<a href="#" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>',
+    remove: '<a href="#" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i></a>',
+    duplicate: '<a href="#" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i></a>',
+    // allow_up: false,
+    // allow_down: false,
+    // allow_add: false,
+    // allow_remove: false,
+    // allow_duplicate: false
+};
+
+ (function ( $ ) {
+ var UI = {
+    adminInit: function () {
+
+    }
  };
 
- $(document).ready(function() {
- UI.adminInit();
+ $(function() {
+    UI.adminInit();
  });
- }( jQuery ));
- */
-$(document).ready(function(){
-
-    $('button.close').click(function(){
-        $(this).parent().slideUp();
-    });
-
-    $('select#changeSiteSeletor').change(function(){
-        var dest = $(this).val();
-        if (dest != "") {
-            window.open(dest,'_blank');
-        }
-    });
-    
-	$(function () {
-	  	$('[data-toggle="tooltip"]').tooltip()
-	})
-});
+ }( $ ));

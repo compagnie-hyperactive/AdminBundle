@@ -1,9 +1,6 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
 {%- block lch_form_footer -%}
-    {% if(form.vars.attr.helper is defined) %}
-        <p class="helper pull-right text-right col-xs-12 col-md-6"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper }}</p>
-    {% endif %}
     {{ block('form_errors') }}
 {%- endblock lch_form_footer -%}
 
@@ -28,16 +25,46 @@
 {% block form_label -%}
     <div class="col-xs-12 col-md-2">
         {{- parent() -}}
+        {% if(form.vars.attr.helper is defined) %}
+            <p class="helper"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans() }}</p>
+        {% endif %}
     </div>
 {%- endblock form_label %}
 
 
 {%- block collection_widget -%}
-    <div class="col-xs-12 col-md-10">
-        {{- parent() -}}
-        {{- block('lch_form_footer') -}}
-    </div>
+    {% spaceless %}
+        <div class="col-xs-12 col-md-10">
+            {# For Symfony Collection Usage : https://github.com/ninsuo/symfony-collection #}
+            {% if prototype is defined %}
+                {#{% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}#}
+                {% set attr = attr|merge({'data-prototype': block('collection_item_widget')}) %}
+                {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+            {% endif %}
+            {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+            {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+            {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+            {{ block('form_widget') }}
+            {#{{- block('lch_form_footer') -}}#}
+        </div>
+    {% endspaceless %}
 {%- endblock collection_widget -%}
+
+{% block collection_item_widget %}
+    <div class="col-xs-12 no-gutter">
+        {#{{- parent() -}}#}
+        {{- form_label(prototype) -}}
+        {{- form_widget(prototype) -}}
+        <div class="collection-actions col-xs-12 text-right">
+            <a href="#" class="btn btn-default collection-up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+            <a href="#" class="btn btn-default collection-down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+            <a href="#" class="btn btn-default collection-add"><i class="glyphicon glyphicon-plus"></i></a>
+            <a href="#" class="btn btn-default collection-remove"><i class="glyphicon glyphicon-minus"></i></a>
+            <a href="#" class="btn btn-default collection-duplicate"><i class="glyphicon glyphicon-duplicate"></i></a>
+        </div>
+        <hr class="col-xs-10 col-xs-offset-1">
+    </div>
+{% endblock collection_item_widget %}
 
 {%- block textarea_widget -%}
     <div class="col-xs-12 col-md-10">
@@ -91,4 +118,3 @@
         </div>
     {%- endif %}
 {%- endblock form_errors %}
-

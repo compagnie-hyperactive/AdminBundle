@@ -2,7 +2,6 @@ parameters:
   lch.admin.list.twig.extension.class: 'Lch\AdminBundle\Twig\Extension\LchListAdminExtension'
   lch.admin.menu_builder.class: 'Lch\AdminBundle\Menu\MenuBuilder'
 
-
 services:
   lch.admin.menu_builder.admin:
     class: "%lch.admin.menu_builder.class%"

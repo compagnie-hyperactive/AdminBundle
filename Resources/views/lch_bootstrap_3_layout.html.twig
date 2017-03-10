@@ -96,6 +96,40 @@
     {{ block('form_widget') }}
 {%- endblock integer_widget -%}
 
+{%- block money_widget -%}
+    {{ money_pattern|replace({ '{{ widget }}': block('form_widget') })|raw }}
+{%- endblock money_widget -%}
+
+{%- block url_widget -%}
+    {%- set type = type|default('url') -%}
+    {{ block('form_widget') }}
+{%- endblock url_widget -%}
+
+{%- block search_widget -%}
+    {%- set type = type|default('search') -%}
+    {{ block('form_widget') }}
+{%- endblock search_widget -%}
+
+{%- block percent_widget -%}
+    {%- set type = type|default('text') -%}
+    {{ block('form_widget') }} %
+{%- endblock percent_widget -%}
+
+{%- block password_widget -%}
+    {%- set type = type|default('password') -%}
+    {{ block('form_widget') }}
+{%- endblock password_widget -%}
+
+{%- block email_widget -%}
+    {%- set type = type|default('email') -%}
+    {{ block('form_widget') }}
+{%- endblock email_widget -%}
+
+{%- block range_widget -%}
+    {% set type = type|default('range') %}
+    {{- block('form_widget') -}}
+{%- endblock range_widget %}
+
 
 {% block button_widget -%}
     {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}

@@ -26,7 +26,7 @@
     <div class="col-xs-12 col-md-2">
         {{- parent() -}}
         {% if(form.vars.attr.helper is defined) %}
-            <p class="helper"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans() }}</p>
+            <p class="helper"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans()|raw }}</p>
         {% endif %}
     </div>
 {%- endblock form_label %}
@@ -84,6 +84,17 @@
     {%- set attr = attr|merge({'class': 'btn-primary' })|merge({'icon': attr.icon|default('ok') }) -%}
     {{- parent() -}}
 {%- endblock submit_widget -%}
+
+{%- block number_widget -%}
+     {#type="number" doesn't work with floats #}
+    {%- set type = type|default('text') -%}
+    {{ block('form_widget') }}
+{%- endblock number_widget -%}
+
+{%- block integer_widget -%}
+    {#{%- set type = type|default('number') -%}#}
+    {{ block('form_widget') }}
+{%- endblock integer_widget -%}
 
 
 {% block button_widget -%}

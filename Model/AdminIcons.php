@@ -20,4 +20,6 @@ class AdminIcons
     const EYE_CLOSED = "glyphicon glyphicon-eye-close";
     const PENCIL = "glyphicon glyphicon-pencil";
     const REPEAT = "glyphicon glyphicon-repeat";
+    const SCREENSHOT = "glyphicon glyphicon-screenshot";
+    const SIGNAL = "glyphicon glyphicon-signal";
 }

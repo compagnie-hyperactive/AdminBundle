@@ -6,7 +6,7 @@
 
 
 {%- block form_widget -%}
-    <div class="col-xs-12 col-md-10">
+    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
@@ -40,10 +40,13 @@
 {%- endblock radio_row %}
 
 {% block form_label -%}
-    <div class="col-xs-12 col-md-2">
+    <div class="col-xs-12 {% if(form.parent.parent == null) %}col-md-2{% endif %}">
+        {% if(form.parent.parent != null) %}
+            {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' col-xs-6')|trim}) -%}
+        {% endif %}
         {{- parent() -}}
         {% if(form.vars.attr.helper is defined) %}
-            <p class="helper"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans()|raw }}</p>
+            <p class="helper {% if(form.parent.parent != null) %}text-right{% endif %}"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans()|raw }}</p>
         {% endif %}
     </div>
 {%- endblock form_label %}
@@ -51,7 +54,7 @@
 
 {%- block collection_widget -%}
     {% spaceless %}
-        <div class="col-xs-12 col-md-10">
+        <div class="col-xs-12 {% if(form.parent.parent == null) %}col-md-10{% endif %} collection">
             {# For Symfony Collection Usage : https://github.com/ninsuo/symfony-collection #}
             {% if prototype is defined %}
                 {#{% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}#}
@@ -62,7 +65,6 @@
             {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
             {% set attr = attr|merge({'data-name-prefix': full_name}) %}
             {{ block('form_widget') }}
-            {#{{- block('lch_form_footer') -}}#}
         </div>
     {% endspaceless %}
 {%- endblock collection_widget -%}
@@ -72,26 +74,19 @@
         {#{{- parent() -}}#}
         {#{{- form_label(prototype) -}}#}
         {{- form_widget(prototype) -}}
-        {#<div class="collection-actions col-xs-12 text-right">#}
-            {#<a href="#" class="btn btn-default collection-up"><i class="glyphicon glyphicon-chevron-up"></i></a>#}
-            {#<a href="#" class="btn btn-default collection-down"><i class="glyphicon glyphicon-chevron-down"></i></a>#}
-            {#<a href="#" class="btn btn-default collection-add"><i class="glyphicon glyphicon-plus"></i></a>#}
-            {#<a href="#" class="btn btn-default collection-remove"><i class="glyphicon glyphicon-minus"></i></a>#}
-            {#<a href="#" class="btn btn-default collection-duplicate"><i class="glyphicon glyphicon-duplicate"></i></a>#}
-        {#</div>#}
-        <hr class="col-xs-10 col-xs-offset-1">
+        {#<hr class="col-xs-10 col-xs-offset-1">#}
     </div>
 {% endblock collection_item_widget %}
 
 {%- block textarea_widget -%}
-    <div class="col-xs-12 col-md-10">
+    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
 {%- endblock textarea_widget -%}
 
 {%- block choice_widget -%}
-    <div class="col-xs-12 col-md-10">
+    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>

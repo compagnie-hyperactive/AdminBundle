@@ -58,12 +58,27 @@ body {
           padding:0;
         }
 
-        .collection-actions {
-          width: 100%;
-          text-align: right;
-          float: left;
-        }
 
+        /*************
+         * Special collection treatment
+         */
+        div[data-prototype] > div {
+          padding: 20px 5px;
+          border: 1px solid #eee;
+          margin-bottom: 5px;
+          background-color: #FFF;
+          &:nth-child(even) {
+            background-color: #EEE;
+          }
+          div[class$="-actions"] {
+            width: 100%;
+            text-align: right;
+            float: left;
+            a {
+              margin:5px;
+            }
+          }
+        }
 
         .submit-area {
           a, button {

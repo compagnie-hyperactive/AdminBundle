@@ -53,7 +53,7 @@
         {% if(form.vars.attr.helper is defined) %}
             <p class="helper {% if(form.parent.parent != null and (form.parent.vars.attr.force_two_columns_presentation is not defined)) %}text-right{% endif %}">
                 <i class="glyphicon glyphicon-question-sign"></i>
-                {{ form.vars.attr.helper|trans()|raw }}
+                {{ form.vars.attr.helper|trans({}, form.vars.translation_domain)|raw }}
             </p>
         {% endif %}
     </div>

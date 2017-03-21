@@ -6,7 +6,8 @@
 
 
 {%- block form_widget -%}
-    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
+    {% import _self as helper %}
+    <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
@@ -15,7 +16,10 @@
 {% block form_row -%}
     <div class="col-xs-12 no-gutter">
         {#{{- parent() -}}#}
-        {{- form_label(form) -}}
+        {% if form.vars.attr.no_label is not defined %}
+            {{- form_label(form) -}}
+        {% endif %}
+
         {{- form_widget(form) -}}
         <hr class="col-xs-10 col-xs-offset-1">
     </div>
@@ -40,13 +44,17 @@
 {%- endblock radio_row %}
 
 {% block form_label -%}
-    <div class="col-xs-12 {% if(form.parent.parent == null) %}col-md-2{% endif %}">
-        {% if(form.parent.parent != null) %}
+    {% import _self as helper %}
+    <div class="col-xs-12 {{ helper.labelWidth(form) }}">
+        {% if(form.parent.parent != null and (form.parent.vars.attr.force_two_columns_presentation is not defined)) %}
             {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' col-xs-6')|trim}) -%}
         {% endif %}
         {{- parent() -}}
         {% if(form.vars.attr.helper is defined) %}
-            <p class="helper {% if(form.parent.parent != null) %}text-right{% endif %}"><i class="glyphicon glyphicon-question-sign"></i>{{ form.vars.attr.helper|trans()|raw }}</p>
+            <p class="helper {% if(form.parent.parent != null and (form.parent.vars.attr.force_two_columns_presentation is not defined)) %}text-right{% endif %}">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                {{ form.vars.attr.helper|trans()|raw }}
+            </p>
         {% endif %}
     </div>
 {%- endblock form_label %}
@@ -79,14 +87,16 @@
 {% endblock collection_item_widget %}
 
 {%- block textarea_widget -%}
-    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
+    {% import _self as helper %}
+    <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
 {%- endblock textarea_widget -%}
 
 {%- block choice_widget -%}
-    <div class="col-xs-12 {% if(form.parent.parent == null and form.vars.data is not iterable) %}col-md-10{% endif %} widget">
+    {% import _self as helper %}
+    <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
@@ -175,3 +185,23 @@
         </div>
     {%- endif %}
 {%- endblock form_errors %}
+
+
+{# Checks #}
+
+{% macro widgetWidth(form) %}
+    {% spaceless %}
+        {% if ((form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable) %}
+            col-md-10
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+
+{% macro labelWidth(form) %}
+    {% spaceless %}
+        {% if (form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) %}
+            col-md-2
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

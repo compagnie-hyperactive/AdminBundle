@@ -58,7 +58,11 @@ body {
           padding:0;
         }
 
-
+        .panel-heading {
+          h3 {
+            margin: 10px 0;
+          }
+        }
         /*************
          * Special collection treatment
          */

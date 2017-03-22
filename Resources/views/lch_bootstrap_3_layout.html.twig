@@ -14,7 +14,11 @@
 {%- endblock form_widget -%}
 
 {% block form_row -%}
-    <div class="col-xs-12 no-gutter">
+    {% if(form.vars.attr.width is defined) %}
+        <div style="float: left; width: {{ form.vars.attr.width }}%">
+    {% else %}
+        <div class="col-xs-12 no-gutter">
+    {% endif %}
         {#{{- parent() -}}#}
         {% if form.vars.attr.no_label is not defined %}
             {{- form_label(form) -}}
@@ -191,7 +195,7 @@
 
 {% macro widgetWidth(form) %}
     {% spaceless %}
-        {% if ((form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable) %}
+        {% if ((form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable and form.vars.attr.width is not defined) %}
             col-md-10
         {% endif %}
     {% endspaceless %}
@@ -200,7 +204,7 @@
 
 {% macro labelWidth(form) %}
     {% spaceless %}
-        {% if (form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) %}
+        {% if (form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.attr.width is not defined %}
             col-md-2
         {% endif %}
     {% endspaceless %}

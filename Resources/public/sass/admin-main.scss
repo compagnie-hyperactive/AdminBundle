@@ -1,5 +1,9 @@
 $dark-background-color: #23282d;
 $light-color: #FFF;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
 
 body {
   #content {
@@ -99,9 +103,18 @@ body {
         * CKEditor
         */
         div.cke {
-          max-width: 100%;
           float:left;
           margin-left: 5px;
+          max-width: 100%;
+          @media (min-width: $screen-sm-min) {
+            width: 500px;
+          }
+          @media (min-width: $screen-md-min) {
+            width: 800px;
+          }
+          @media (min-width: $screen-lg-min) {
+            width: 1000px;
+          }
         }
       }
     }

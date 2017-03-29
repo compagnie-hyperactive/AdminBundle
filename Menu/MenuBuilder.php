@@ -6,7 +6,7 @@ use Knp\Menu\ItemInterface;
 use Lch\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Lch\AdminBundle\Event\AdminEvents;
+use Lch\AdminBundle\LchAdminEvents;
 use Lch\AdminBundle\Event\GenerateAdminMenuEvent;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -71,7 +71,7 @@ class MenuBuilder implements ContainerAwareInterface
 
         // TODO set cache for menu generation
         $this->eventDispatcher->dispatch(
-            AdminEvents::GENERATE_ADMIN_MENU,
+            LchAdminEvents::GENERATE_ADMIN_MENU,
             $menuEvent
         );
 

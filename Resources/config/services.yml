@@ -1,5 +1,4 @@
 parameters:
-  lch.admin.list.twig.extension.class: 'Lch\AdminBundle\Twig\Extension\LchListAdminExtension'
   lch.admin.menu_builder.class: 'Lch\AdminBundle\Menu\MenuBuilder'
 
 services:
@@ -8,12 +7,3 @@ services:
     arguments: ["@knp_menu.factory", "@security.token_storage", "@event_dispatcher"]
     tags:
       - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
-
-  # Twig Extensions
-  lch.admin.list.twig_extension:
-    class: "%lch.admin.list.twig.extension.class%"
-    public: false
-    arguments: ["@doctrine.orm.entity_manager", '@session', "@twig", "@event_dispatcher", "@security.token_storage", '@translator']
-    tags:
-      - { name: twig.extension }
-    lazy: true

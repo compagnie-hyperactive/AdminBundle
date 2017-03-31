@@ -7,3 +7,11 @@ services:
     arguments: ["@knp_menu.factory", "@security.token_storage", "@event_dispatcher"]
     tags:
       - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
+
+
+  lch.admin.generate_menu:
+    class: Lch\AdminBundle\Listener\Menu\AdminMenuListener
+    arguments: ['@translator']
+    tags:
+      - { name: kernel.event_listener, event: lch.admin.generate_menu, method: onAdminMenuGeneration, priority: 90 }
+    lazy: true

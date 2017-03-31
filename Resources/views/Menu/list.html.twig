@@ -1,0 +1,6 @@
+{% extends '@LchAdmin/base/base.admin.list.html.twig' %}
+{% block title %}{{ "lch.admin.menu.form.list.title"|trans() }}{% endblock title %}
+
+{% block content %}
+    {{ renderList(menus, listOptions) }}
+{% endblock content %}

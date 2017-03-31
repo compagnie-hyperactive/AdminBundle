@@ -1,0 +1,11 @@
+lch_admin_menu_list:
+  path:     /list
+  defaults: { _controller: LchAdminBundle:Menu:list }
+
+lch_admin_menu_add:
+  path:     /add
+  defaults: { _controller: LchAdminBundle:Menu:add }
+
+lch_admin_menu_edit:
+  path:     /{id}/edit
+  defaults: { _controller: LchAdminBundle:Menu:edit }

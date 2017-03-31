@@ -1,0 +1,28 @@
+{% extends '@LchAdmin/base/base.admin.add.edit.html.twig' %}
+{% block title %}{{ "lch.admin.menu.form.add.title"|trans() }}{% endblock title %}
+{% block page_icon %}plus{% endblock page_icon %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/lchmenu/css/jqtree.css') }}" type="text/css" />
+{% endblock stylesheets %}
+
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.location) }}
+        {{ form_row(form.menuItems) }}
+        {% block submit_area %}
+            {% include '@LchAdmin/Form/buttons.html.twig' with {'form': form.create, 'returnRoute': 'lch_admin_menu_list'} %}
+        {% endblock submit_area %}
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# Menu #}
+    <script src="{{ asset('bundles/lchmenu/js/tree.jquery.js') }}"></script>
+    <script src="{{ asset('bundles/lchmenu/js/lch_menu.js') }}"></script>
+{% endblock javascripts %}

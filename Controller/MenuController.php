@@ -9,6 +9,7 @@
 namespace Lch\AdminBundle\Controller;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Lch\AdminBundle\Listener\Menu\MenusListSubscriber;
 use Lch\MenuBundle\Entity\Menu;
 use Lch\MenuBundle\Form\MenuType;
@@ -104,11 +105,13 @@ class MenuController extends Controller
                 ]
             ])
         ;
+
         $menuForm->handleRequest($request);
 
         if($menuForm->isSubmitted() && $menuForm->isValid()) {
             try {
                 $em = $this->getDoctrine()->getManager();
+
                 $em->persist($menu);
                 $em->flush();
                 $this->addFlash('success', $this->get('translator')->trans('lch.menu.form.flash.edit.success'));

@@ -49,5 +49,14 @@ class AdminMenuListener
             'route' => 'lch_admin_menu_add',
         ]);
         $addMenuChild->setExtra(MenuBuilder::ICON, AdminIcons::PENCIL);
+
+        /**********************************************************
+         * Medias
+         */
+        $mediaChild = $menu->addChild(
+            $this->translator->trans('lch.admin.media.library.title'), [
+            'route' => 'lch_admin_media_library',
+        ]);
+        $mediaChild->setExtra(MenuBuilder::ICON, AdminIcons::HDD);
     }
 }

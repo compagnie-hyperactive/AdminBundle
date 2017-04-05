@@ -1,0 +1,43 @@
+{% extends '@LchAdmin/base/base.admin.list.html.twig' %}
+
+{% block bodyclasses %}{{ parent() }} media-library{% endblock bodyclasses %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# Media #}
+    <link rel="stylesheet" href="{{ asset('bundles/lchmedia/css/media.css') }}" type="text/css" />
+{% endblock stylesheets %}
+
+{% block title_classes %}col-xs-12 col-sm-6{% endblock title_classes %}
+{% block title %}{{ "lch.admin.media.library.title"|trans() }}{% endblock title %}
+{% block title_right %}
+    {% spaceless %}
+        <div id="media-type-selector" class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <select class="form-control">
+                    {% for slug, mediaType in mediaTypes %}
+                        <option {% if(type == slug) %}selected="selected"{% endif %} value="{{ slug }}">{{ slug }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock title_right %}
+
+{% block content %}
+
+    <div id="media-form-container">
+        {{ render(controller('LchMediaBundle:Media:add', {'request': app.request, 'type': type})) }}
+    </div>
+    <div id="media-list-container">
+        {{ render(controller('LchMediaBundle:Media:list', {'request': app.request, 'type': type, 'choose': false})) }}
+    </div>
+{% endblock content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {# Medias #}
+    <script src="{{ asset('bundles/lchmedia/js/isotope.js') }}"></script>
+    <script src="{{ asset('bundles/lchmedia/js/media-library.js') }}"></script>
+{% endblock javascripts %}

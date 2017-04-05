@@ -1,3 +1,7 @@
 lch_admin_menu:
   resource: "@LchAdminBundle/Resources/config/routing/menu.yml"
   prefix: /menu
+
+lch_admin_media:
+  resource: "@LchAdminBundle/Resources/config/routing/media.yml"
+  prefix: /media

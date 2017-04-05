@@ -1,0 +1,5 @@
+lch_admin_media_library:
+  path:     /library/{type}
+  defaults: { _controller: LchAdminBundle:MediaLibrary:library, type: image }
+  options:
+    expose: true

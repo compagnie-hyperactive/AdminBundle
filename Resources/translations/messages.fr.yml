@@ -1,5 +1,8 @@
 lch:
   admin:
+    media:
+      library:
+        title: Librairie
     menu:
       main:
         title: Menus

@@ -170,6 +170,15 @@ body {
             width: 1000px;
           }
         }
+
+        /************************************
+        * Media library
+        */
+        #media-type-selector {
+          select {
+            margin-top: 25px;
+          }
+        }
       }
     }
   }

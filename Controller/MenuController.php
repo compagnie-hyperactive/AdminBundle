@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MenuController extends Controller
+class MenuController extends AdminController
 {
     /**
      * @return Response
@@ -31,6 +31,7 @@ class MenuController extends Controller
         $listOptions = [
             'entity' => [
                 'name'  => MenusListSubscriber::ENTITY,
+                'class' => Menu::class,
                 'alias' => 'm'
             ],
             'fields' => [

@@ -1,5 +1,10 @@
 lch:
   admin:
+    list:
+      empty: La liste est vide.
+      actions:
+        edit: Modifier
+
     media:
       library:
         title: Librairie

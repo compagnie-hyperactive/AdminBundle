@@ -179,6 +179,15 @@ body {
             margin-top: 25px;
           }
         }
+
+        /*************
+         * List
+         */
+        .records_list {
+          form.action {
+            display: inline-block;
+          }
+        }
       }
     }
   }

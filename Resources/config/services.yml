@@ -8,7 +8,6 @@ services:
     tags:
       - { name: knp_menu.menu_builder, method: adminMainMenu, alias: main }
 
-
   lch.admin.generate_menu:
     class: Lch\AdminBundle\Listener\Menu\AdminMenuListener
     arguments: ['@translator']

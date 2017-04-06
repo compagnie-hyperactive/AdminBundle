@@ -1,2 +1,15 @@
 {% extends '@LchAdmin/base/base.admin.html.twig' %}
 {% block page_icon %}list{% endblock page_icon %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+           $('form').submit(function() {
+              if(!confirm("Etes-vous sûr de vouloir supprimer cette entité ?")) {
+                  return false;
+              }
+           });
+        });
+    </script>
+{% endblock %}

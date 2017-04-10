@@ -209,3 +209,63 @@
         {% endif %}
     {% endspaceless %}
 {% endmacro %}
+
+
+{% block lch_admin_select2_widget %}
+{% spaceless %}
+{{ block('choice_widget') }}
+{#<script>#}
+{#$(function() {#}
+    {##}
+{#});#}
+{#</script>#}
+{% endspaceless %}
+<script>
+$(function() {
+$("#{{ form.vars['id'] }}").select2({
+   {# Placeholder #}
+   placeholder : "{{ form.vars['placeholder']|trans }}",
+   {# AJAX #}
+   {% if(form.vars['ajax'] is defined) %}
+       ajax: {
+           url: "{{ path(form.vars['ajax']['route']) }}",
+           dataType: 'json',
+           method: 'POST',
+           delay: 250,
+           data: function (params) {
+               return {
+                   q: params.term, // search term
+                   page: params.page
+               };
+           },
+           processResults: function (data, params) {
+               // parse the results into the format expected by Select2
+               // since we are using custom formatting functions we do not need to
+               // alter the remote JSON data, except to indicate that infinite
+               // scrolling can be used
+               params.page = params.page || 1;
+
+               return {
+                   results: data.items,
+                   pagination: {
+                       more: (params.page * 30) < data.total_count
+                   }
+               };
+           },
+           cache: true
+       },
+        templateSelection : function(item) {
+            return item.text;
+        },
+        templateResult: function (item) {
+           return {{ form.vars['ajax']['template_result']|raw }};
+        },
+   {% endif %}
+   {% if(form.vars['minimum_input_length'] is defined) %}
+        minimumInputLength: {{ form.vars['minimum_input_length'] }},
+   {% endif %}
+});
+$("#{{ form.vars['id'] }}").trigger('change');
+});
+</script>
+{% endblock %}

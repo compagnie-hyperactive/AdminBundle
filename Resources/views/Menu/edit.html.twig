@@ -1,7 +1,7 @@
-{% extends '@LchAdmin/Menu/add.html.twig' %}
-{% block title %}{{ "lch.admin.menu.form.edit.title"|trans() }}{% endblock title %}
+{% extends '@LchAdmin/MediaTag/add.html.twig' %}
+{% block title %}{{ "lch.admin.tag.form.edit.title"|trans() }}{% endblock title %}
 {% block page_icon %}edit{% endblock page_icon %}
 
 {% block submit_area %}
-    {% include '@LchAdmin/Form/buttons.html.twig' with {'form': form.edit, 'returnRoute': 'lch_admin_menu_list'} %}
+    {% include '@LchAdmin/Form/buttons.html.twig' with {'form': form.edit, 'returnRoute': 'lch_admin_tag_list'} %}
 {% endblock submit_area %}

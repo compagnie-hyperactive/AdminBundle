@@ -14,3 +14,17 @@ services:
     tags:
       - { name: kernel.event_listener, event: lch.admin.generate_menu, method: onAdminMenuGeneration, priority: 90 }
     lazy: true
+
+  lch.admin.menu.list.subscriber:
+    class: Lch\AdminBundle\Listener\Menu\MenusListSubscriber
+    arguments: ['@translator']
+    tags:
+      - { name: kernel.event_subscriber }
+    lazy: true
+
+  lch.admin.tag.list.subscriber:
+      class: Lch\AdminBundle\Listener\Menu\TagsListSubscriber
+      arguments: ['@translator']
+      tags:
+        - { name: kernel.event_subscriber }
+      lazy: true

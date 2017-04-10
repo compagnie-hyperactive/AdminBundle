@@ -6,6 +6,7 @@
     {{ parent() }}
     {# Medias #}
     <link rel="stylesheet" href="{{ asset('bundles/lchmedia/css/media.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/lchadmin/css/select2.min.css') }}" type="text/css" />
 {% endblock stylesheets %}
 
 {% block title_classes %}col-xs-12 col-sm-6{% endblock title_classes %}
@@ -56,5 +57,8 @@
     {{ parent() }}
      {# Medias #}
     <script src="{{ asset('bundles/lchmedia/js/isotope.js') }}"></script>
+    {# Collections #}
+    <script src="{{ asset('bundles/lchadmin/js/select2.min.js') }}"></script>
+
     <script src="{{ asset('bundles/lchmedia/js/media-library.js') }}"></script>
 {% endblock javascripts %}

@@ -11,6 +11,12 @@
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" href="{{ asset('bundles/lchadmin/css/admin-main.css') }}" type="text/css" />
         {% endblock %}
+        {% block top_javascript %}
+            <script
+                    src="//code.jquery.com/jquery-3.1.1.min.js"
+                    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                    crossorigin="anonymous"></script>
+        {% endblock top_javascript %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body class="{% block bodyclasses %}admin{% endblock %}" {% block bodyattributes %}data-route="{{ app.request.attributes.get('_route') }}"{% endblock %}>
@@ -19,7 +25,7 @@
                 <div id="content" class="row">
                     <div id="main-menu" class=" col-xs-2 col-sm-4 col-md-2">
                         {% block main_menu %}
-                            {{ knp_menu_render('main', {depth: 2}) }}
+                            {{ knp_menu_render('main', {depth: 3}) }}
                         {% endblock main_menu %}
                     </div>
                     <div id="page-content" class="col-xs-10 col-sm-8 col-md-10 no-gutter">
@@ -95,10 +101,6 @@
             {% endblock body %}
 
             {% block javascripts %}
-                <script
-                        src="//code.jquery.com/jquery-3.1.1.min.js"
-                        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-                        crossorigin="anonymous"></script>
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
                 <script src="{{ asset('bundles/lchadmin/js/jquery.admin.main.js') }}"></script>
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>

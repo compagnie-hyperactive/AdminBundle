@@ -23,5 +23,21 @@ lch:
         fields:
           title:
             label: Menu
+    tag:
+      main:
+        title: Tags
+      add:
+        title: Ajouter
+      form:
+        list:
+          title: Liste des tags disponibles
+        add:
+          title: Ajouter un tag
+        edit:
+          title: Modifier un tag
+        fields:
+          name:
+            label: Tag
+            helper: le nom du tag, qui doit être unique par rapport aux autres (pas de doublons possibles)
 
 

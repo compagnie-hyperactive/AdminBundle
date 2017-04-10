@@ -1,0 +1,15 @@
+lch_admin_tag_list:
+  path:     /list
+  defaults: { _controller: LchAdminBundle:MediaTag:list }
+
+lch_admin_tag_add:
+  path:     /add
+  defaults: { _controller: LchAdminBundle:MediaTag:add }
+
+lch_admin_tag_edit:
+  path:     /{id}/edit
+  defaults: { _controller: LchAdminBundle:MediaTag:edit }
+
+lch_admin_tag_delete:
+  path:     /delete
+  defaults: { _controller: LchAdminBundle:MediaTag:delete }

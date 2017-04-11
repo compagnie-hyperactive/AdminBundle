@@ -37,20 +37,6 @@ class AdminMenuListener
         $menu = $event->getMenu();
 
         /**********************************************************
-         * Menus
-         */
-        $menuChild = $menu->addChild(
-            $this->translator->trans('lch.admin.menu.main.title'), [
-            'route' => 'lch_admin_menu_list',
-        ]);
-        $menuChild->setExtra(MenuBuilder::ICON, AdminIcons::HAMBURGER);
-
-        $addMenuChild = $menuChild->addChild($this->translator->trans('lch.admin.menu.add.title'), [
-            'route' => 'lch_admin_menu_add',
-        ]);
-        $addMenuChild->setExtra(MenuBuilder::ICON, AdminIcons::PENCIL);
-
-        /**********************************************************
          * Medias
          */
         $mediaChild = $menu->addChild(
@@ -68,5 +54,19 @@ class AdminMenuListener
             'route' => 'lch_admin_tag_add',
         ]);
         $addTagChild->setExtra(MenuBuilder::ICON, AdminIcons::PENCIL);
+
+        /**********************************************************
+         * Menus
+         */
+        $menuChild = $menu->addChild(
+            $this->translator->trans('lch.admin.menu.main.title'), [
+            'route' => 'lch_admin_menu_list',
+        ]);
+        $menuChild->setExtra(MenuBuilder::ICON, AdminIcons::HAMBURGER);
+
+        $addMenuChild = $menuChild->addChild($this->translator->trans('lch.admin.menu.add.title'), [
+            'route' => 'lch_admin_menu_add',
+        ]);
+        $addMenuChild->setExtra(MenuBuilder::ICON, AdminIcons::PENCIL);
     }
 }

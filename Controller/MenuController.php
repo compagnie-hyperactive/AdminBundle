@@ -72,15 +72,15 @@ class MenuController extends AdminController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($menu);
                 $em->flush();
-                $this->addFlash('success', $this->get('translator')->trans('lch.menu.form.flash.add.success'));
+                $this->addFlash('success', $this->get('translator')->trans('lch.admin.menu.form.flash.add.success'));
 
                 return $this->redirectToRoute('lch_admin_menu_edit', ['id' => $menu->getId()]);
             }
             catch(Exception $e) {
-                $this->addFlash('error', $this->get('translator')->trans('lch.menu.form.flash.add.error', ['error' => $e->getMessage()]));
+                $this->addFlash('error', $this->get('translator')->trans('lch.admin.menu.form.flash.add.error', ['error' => $e->getMessage()]));
             }
         } else if($menuForm->isSubmitted() && !$menuForm->isValid()) {
-            $this->addFlash('error', $this->get('translator')->trans('lch.menu.form.flash.generic.error'));
+            $this->addFlash('error', $this->get('translator')->trans('lch.admin.menu.form.flash.generic.error'));
         }
         
         return $this->render('@LchAdmin/Menu/add.html.twig', [
@@ -115,10 +115,10 @@ class MenuController extends AdminController
 
                 $em->persist($menu);
                 $em->flush();
-                $this->addFlash('success', $this->get('translator')->trans('lch.menu.form.flash.edit.success'));
+                $this->addFlash('success', $this->get('translator')->trans('lch.admin.menu.form.flash.edit.success'));
             }
             catch(Exception $e) {
-                $this->addFlash('error', $this->get('translator')->trans('lch.menu.form.flash.edit.error', ['error' => $e->getMessage()]));
+                $this->addFlash('error', $this->get('translator')->trans('lch.admin.menu.form.flash.edit.error', ['error' => $e->getMessage()]));
             }
         }
         

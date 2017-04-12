@@ -35,7 +35,7 @@ class MediaTagController extends AdminController
             ],
             'fields' => [
                 'name' => [
-                    'label' => 'lch.admin.tag.form.fields.title.label'
+                    'label' => 'lch.admin.tag.form.fields.name.label'
                 ]
             ],
             'baseRoute' => 'lch_admin_tag_',
@@ -112,13 +112,13 @@ class MediaTagController extends AdminController
 
                 $em->persist($tag);
                 $em->flush();
-                $this->addFlash('success', $this->get('translator')->trans('lch.admin.menu.form.flash.edit.success'));
+                $this->addFlash('success', $this->get('translator')->trans('lch.admin.tag.form.flash.edit.success'));
             } catch (\Exception $e) {
-                $this->addFlash('error', $this->get('translator')->trans('lch.admin.menu.form.flash.edit.error', ['error' => $e->getMessage()]));
+                $this->addFlash('error', $this->get('translator')->trans('lch.admin.tag.form.flash.edit.error', ['error' => $e->getMessage()]));
             }
         }
 
-        return $this->render('@LchAdmin/Menu/edit.html.twig', [
+        return $this->render('@LchAdmin/MediaTag/edit.html.twig', [
             'form' => $tagForm->createView()
         ]);
     }

@@ -23,6 +23,15 @@ lch:
         fields:
           title:
             label: Menu
+        flash:
+          add:
+            success: Le menu a bien été créé
+            error: 'Il y a eu une erreur à la création du menu : %error%'
+          edit:
+            success: Le menu a bien été modifié
+            error: 'Il y a eu une erreur à la modification du menu : %error%'
+          generic:
+            error: "Il y a eu une erreur à l'enregistrement du menu"
     tag:
       main:
         title: Tags
@@ -39,5 +48,12 @@ lch:
           name:
             label: Tag
             helper: le nom du tag, qui doit être unique par rapport aux autres (pas de doublons possibles)
+        flash:
+          add:
+            success: Le tag a bien été créé
+            error: 'Il y a eu une erreur à la création du tag : %error%'
+          edit:
+            success: Le tag a bien été modifié
+            error: 'Il y a eu une erreur à la modification du tag : %error%'
 
 

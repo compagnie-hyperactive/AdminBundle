@@ -27,8 +27,6 @@ class Select2Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // TODO check options and raise exceptions if necessary
-//        // Handle placeholder
-//        $builder->setAttribute(self::PLACEHOLDER, $options[self::PLACEHOLDER] !== null ? $options[self::PLACEHOLDER] : self::DEFAULT_PLACEHOLDER);
 //
 //        if($options[self::AJAX] !== false) {
 //            $promotionCode = $options[self::AJAX]['parent_object'];
@@ -129,6 +127,7 @@ class Select2Type extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            self::PLACEHOLDER => self::DEFAULT_PLACEHOLDER,
             self::SELECT2_CLASS => 'select2',
             self::AJAX => false,
             self::MINIMUM_INPUT_LENGTH => false,

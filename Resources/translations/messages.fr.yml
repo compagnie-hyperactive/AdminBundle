@@ -34,16 +34,16 @@ lch:
             error: "Il y a eu une erreur à l'enregistrement du menu"
     tag:
       main:
-        title: Tags
+        title: Tags média
       add:
         title: Ajouter
       form:
         list:
-          title: Liste des tags disponibles
+          title: Liste des tags médias disponibles
         add:
-          title: Ajouter un tag
+          title: Ajouter un tag média
         edit:
-          title: Modifier un tag
+          title: Modifier un tag média
         fields:
           name:
             label: Tag

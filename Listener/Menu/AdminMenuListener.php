@@ -42,6 +42,7 @@ class AdminMenuListener
         $mediaChild = $menu->addChild(
             $this->translator->trans('lch.admin.media.library.title'), [
             'route' => 'lch_admin_media_library',
+            'routeParameters' => ['type' => 'image']
         ]);
         $mediaChild->setExtra(MenuBuilder::ICON, AdminIcons::HDD);
 

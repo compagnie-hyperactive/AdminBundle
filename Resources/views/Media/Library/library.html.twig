@@ -9,56 +9,78 @@
     <link rel="stylesheet" href="{{ asset('bundles/lchadmin/css/select2.min.css') }}" type="text/css" />
 {% endblock stylesheets %}
 
-{% block title_classes %}col-xs-12 col-sm-6{% endblock title_classes %}
+{% if popinMode == false %}
+    {% block title_classes %}col-xs-12 col-sm-6{% endblock title_classes %}
+{% endif %}
+
 {% block title %}{{ "lch.admin.media.library.title"|trans() }}{% endblock title %}
 {% block title_right %}
-    {% spaceless %}
-        <div id="media-type-selector" class="col-xs-12 col-sm-6">
-            <div class="form-group">
-                <select class="form-control">
-                    {% for slug, mediaType in mediaTypes %}
-                        <option {% if(type == slug) %}selected="selected"{% endif %} value="{{ slug }}">{{ slug }}</option>
-                    {% endfor %}
-                </select>
+    {% if popinMode == false %}
+        {% spaceless %}
+            <div id="media-type-selector" class="col-xs-12 col-sm-6">
+                <div class="form-group">
+                    <select class="form-control">
+                        {% for slug, mediaType in mediaTypes %}
+                            <option {% if(type == slug) %}selected="selected"{% endif %} value="{{ slug }}">{{ slug }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
-        </div>
-    {% endspaceless %}
+        {% endspaceless %}
+    {% endif %}
 {% endblock title_right %}
 
 {% block content %}
-
-    <div id="media-form-container">
-        {{ render(controller('LchMediaBundle:Media:add', {'request': app.request, 'type': type})) }}
-    </div>
+    {% if popinMode == false %}
+        <div id="media-form-container">
+            {{ render(controller('LchMediaBundle:Media:add', {'request': app.request, 'type': type})) }}
+        </div>
+    {% else %}
+        <input type="hidden" id="popin-mode" value="{{ popinMode }}"/>
+    {% endif %}
     <div id="media-list-container">
         {{ render(controller('LchMediaBundle:Media:list', {'request': app.request, 'type': type, 'libraryMode': true})) }}
     </div>
 
-    <div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{ "lch.admin.media.library.detail_modal.title"|trans() }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="alert alert-danger hidden"></p>
-                    <p>TODO : détail du média</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>Supprimer</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    {% if popinMode == false %}
+        <div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{{ "lch.admin.media.library.detail_modal.title"|trans() }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="alert alert-danger hidden"></p>
+                        <p>TODO : détail du média</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>Supprimer</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    {% endif %}
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
      {# Medias #}
     <script src="{{ asset('bundles/lchmedia/js/isotope.js') }}"></script>
-    {# Collections #}
-    <script src="{{ asset('bundles/lchadmin/js/select2.min.js') }}"></script>
-
     <script src="{{ asset('bundles/lchmedia/js/media-library.js') }}"></script>
+
+    {% if popinMode == false %}
+        {# Collections #}
+        <script src="{{ asset('bundles/lchadmin/js/select2.min.js') }}"></script>
+    {% else %}
+        {# This needs to be inline so far TODO put it in media-library #}
+        <script>
+            // Handle choosing media
+            $('.media-list').on('click', '.media', function() {
+                {{ app.request.get('CKEditorFuncNum')|escape('js') }}
+                window.opener.CKEDITOR.tools.callFunction({{ app.request.get('CKEditorFuncNum')|escape('js') }}, $(this).attr("data-url"));
+                window.close();
+            });
+        </script>
+    {% endif %}
 {% endblock javascripts %}

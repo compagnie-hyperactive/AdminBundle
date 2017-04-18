@@ -15,9 +15,9 @@
 
 {% block form_row -%}
     {% if(form.vars.attr.width is defined) %}
-        <div style="float: left; width: {{ form.vars.attr.width }}%">
+        <div class="form-row" style="float: left; width: {{ form.vars.attr.width }}%">
     {% else %}
-        <div class="col-xs-12 no-gutter">
+        <div class="form-row col-xs-12 no-gutter">
     {% endif %}
         {#{{- parent() -}}#}
         {% if form.vars.attr.no_label is not defined %}
@@ -33,9 +33,9 @@
 
 {% block checkbox_row -%}
     {% if(form.vars.attr.width is defined) %}
-        <div style="float: left; width: {{ form.vars.attr.width }}%">
+        <div class="form-row" style="float: left; width: {{ form.vars.attr.width }}%">
     {% else %}
-        <div class="col-xs-12 no-gutter">
+        <div class="form-row col-xs-12 no-gutter">
     {% endif %}
         <div class="form-group{% if not valid %} has-error{% endif %}">
             {{- form_widget(form) -}}

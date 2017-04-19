@@ -93,11 +93,11 @@ class Select2Type extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-//        // Add placeholder
+        // Add placeholder
 //        if(!isset($options[self::PLACEHOLDER])) {
 //            $view->vars[self::PLACEHOLDER] .= self::DEFAULT_PLACEHOLDER;
 //        }
-        $view->vars[self::PLACEHOLDER] = $form->getConfig()->getAttribute(self::PLACEHOLDER);
+//        $view->vars[self::PLACEHOLDER] = $form->getConfig()->getAttribute(self::PLACEHOLDER);
 
         // Add select2 class
         if(isset($view->vars['attr']['class'])) {

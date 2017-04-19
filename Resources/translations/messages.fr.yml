@@ -8,6 +8,8 @@ lch:
     media:
       library:
         title: Librairie
+    select2:
+      placeholder: "Choisissez un item dans la liste"
     menu:
       main:
         title: Menus

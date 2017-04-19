@@ -299,6 +299,7 @@ $(function() {
 $("#{{ form.vars['id'] }}").select2({
    {# Placeholder #}
    placeholder : "{{ form.vars['placeholder']|trans }}",
+   allowClear: true,
    {# AJAX #}
    {% if(form.vars['ajax'] is defined) %}
        ajax: {

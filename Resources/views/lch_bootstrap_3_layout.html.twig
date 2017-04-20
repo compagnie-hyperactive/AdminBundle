@@ -126,9 +126,19 @@
     {{ block('form_widget') }}
 {%- endblock integer_widget -%}
 
-{%- block money_widget -%}
-    {{ money_pattern|replace({ '{{ widget }}': block('form_widget') })|raw }}
-{%- endblock money_widget -%}
+{#{%- block money_widget -%}#}
+    {#{{ money_pattern|replace({ '{{ widget }}': block('form_widget') })|raw }}#}
+    {#<div class="input-group">#}
+        {#{% set append = money_pattern starts with '{{' %}#}
+        {#{% if not append %}#}
+            {#<span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>#}
+        {#{% endif %}#}
+        {#{{- block('form_widget_simple') -}}#}
+        {#{% if append %}#}
+            {#<span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>#}
+        {#{% endif %}#}
+    {#</div>#}
+{#{%- endblock money_widget -%}#}
 
 {%- block url_widget -%}
     {%- set type = type|default('url') -%}
@@ -140,10 +150,10 @@
     {{ block('form_widget') }}
 {%- endblock search_widget -%}
 
-{%- block percent_widget -%}
-    {%- set type = type|default('text') -%}
-    {{ block('form_widget') }} %
-{%- endblock percent_widget -%}
+{#{%- block percent_widget -%}#}
+    {#{%- set type = type|default('text') -%}#}
+    {#{{ block('form_widget') }} %#}
+{#{%- endblock percent_widget -%}#}
 
 {%- block password_widget -%}
     {%- set type = type|default('password') -%}

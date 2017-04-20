@@ -24,6 +24,8 @@
             {% block body %}
                 <div id="content" class="row">
                     <div id="main-menu" class=" col-xs-2 col-sm-4 col-md-2">
+                        {% block logo %}
+                        {% endblock logo %}
                         {% block main_menu %}
                             {{ knp_menu_render('main', {depth: 3}) }}
                         {% endblock main_menu %}

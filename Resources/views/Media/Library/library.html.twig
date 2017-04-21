@@ -38,7 +38,7 @@
     {% else %}
         <input type="hidden" id="popin-mode" value="{{ popinMode }}"/>
     {% endif %}
-    <div id="media-list-container">
+    <div id="media-list-container" class="library-parent">
         {{ render(controller('LchMediaBundle:Media:list', {'request': app.request, 'type': type, 'libraryMode': true})) }}
     </div>
 
@@ -68,6 +68,7 @@
      {# Medias #}
     <script src="{{ asset('bundles/lchmedia/js/isotope.js') }}"></script>
     <script src="{{ asset('bundles/lchmedia/js/media-library.js') }}"></script>
+    <script src="{{ asset('bundles/lchmedia/js/media-search.js') }}"></script>
 
     {% if popinMode == false %}
         {# Collections #}

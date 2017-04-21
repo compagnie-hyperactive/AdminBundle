@@ -38,7 +38,7 @@ class MediaTagController extends AdminController
                     'label' => 'lch.admin.tag.form.fields.name.label'
                 ]
             ],
-            'baseRoute' => 'lch_admin_tag_',
+            'baseRoute' => 'lch_admin_media_tag_',
             'actionForId' => 'edit'
         ];
 
@@ -73,7 +73,7 @@ class MediaTagController extends AdminController
                 $em->flush();
                 $this->addFlash('success', $this->get('translator')->trans('lch.admin.tag.form.flash.add.success'));
 
-                return $this->redirectToRoute('lch_admin_tag_edit', ['id' => $tag->getId()]);
+                return $this->redirectToRoute('lch_admin_media_tag_edit', ['id' => $tag->getId()]);
             } catch (\Exception $e) {
                 $this->addFlash('error', $this->get('translator')->trans('lch.admin.tag.form.flash.add.error', ['error' => $e->getMessage()]));
             }

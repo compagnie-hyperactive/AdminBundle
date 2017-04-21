@@ -7,7 +7,7 @@
         {{ form_errors(form) }}
         {{ form_row(form.name) }}
         {% block submit_area %}
-            {% include '@LchAdmin/Form/buttons.html.twig' with {'form': form.create, 'returnRoute': 'lch_admin_tag_list'} %}
+            {% include '@LchAdmin/Form/buttons.html.twig' with {'form': form.create, 'returnRoute': 'lch_admin_media_tag_list'} %}
         {% endblock submit_area %}
         {{ form_rest(form) }}
     {{ form_end(form) }}

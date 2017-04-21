@@ -1,3 +1,7 @@
+lch_admin_media_tag:
+  resource: "@LchAdminBundle/Resources/config/routing/tag.yml"
+  prefix: /tag
+
 lch_admin_media_library:
   path:     /library/{type}
   defaults: { _controller: LchAdminBundle:MediaLibrary:library }

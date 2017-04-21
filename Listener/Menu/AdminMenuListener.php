@@ -47,12 +47,12 @@ class AdminMenuListener
         $mediaChild->setExtra(MenuBuilder::ICON, AdminIcons::HDD);
 
         $tagsChild = $mediaChild->addChild($this->translator->trans('lch.admin.tag.main.title'), [
-            'route' => 'lch_admin_tag_list',
+            'route' => 'lch_admin_media_tag_list',
         ]);
         $tagsChild->setExtra(MenuBuilder::ICON, AdminIcons::TAGS);
 
         $addTagChild = $tagsChild->addChild($this->translator->trans('lch.admin.tag.add.title'), [
-            'route' => 'lch_admin_tag_add',
+            'route' => 'lch_admin_media_tag_add',
         ]);
         $addTagChild->setExtra(MenuBuilder::ICON, AdminIcons::PENCIL);
 

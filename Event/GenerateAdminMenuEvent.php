@@ -32,9 +32,9 @@ class GenerateAdminMenuEvent extends Event
     /**
      * @param FactoryInterface $factory
      * @param ItemInterface $menu
-     * @param UserInterface $user user is well known as we are on admin part
+     * @param UserInterface|string $user user is well known as we are on admin part
      */
-    public function __construct(FactoryInterface $factory, ItemInterface $menu, UserInterface $user) {
+    public function __construct(FactoryInterface $factory, ItemInterface $menu, $user) {
         $this->factory = $factory;
         $this->menu = $menu;
         $this->user = $user;

@@ -84,18 +84,7 @@
                         <div id="admin-screen" class="col-xs-12">
                             <h1 class="{% block title_classes %}{% endblock title_classes %}"><i class="glyphicon glyphicon-{% block page_icon %}{% endblock page_icon %}"></i>{% block h1 %}{{- block('title')  -}}{% endblock h1 %}</h1>
                             {% block title_right %}{% endblock title_right %}
-                            {% for label, flashes in app.session.flashbag.all %}
-                                {% for flash in flashes %}
-                                {% if label == 'error' %}
-                                <div class="alert alert-danger">
-                                    {% else %}
-                                    <div class="alert alert-{{ label }}">
-                                        {% endif %}
-                                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        {{ flash|trans|raw }}
-                                    </div>
-                                {% endfor %}
-                            {% endfor %}
+                            {% include '@LchAdmin/fragments/flash.html.twig' %}
                             {% block content %}{% endblock content %}
                         </div>
                     </div>

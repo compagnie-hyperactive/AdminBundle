@@ -1,0 +1,12 @@
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        {% if label == 'error' %}
+            <div class="alert alert-danger">
+        {% else %}
+            <div class="alert alert-{{ label }}">
+        {% endif %}
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ flash|trans|raw }}
+        </div>
+    {% endfor %}
+{% endfor %}

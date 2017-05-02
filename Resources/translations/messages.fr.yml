@@ -57,5 +57,15 @@ lch:
           edit:
             success: Le tag a bien été modifié
             error: 'Il y a eu une erreur à la modification du tag : %error%'
+    breadcrumb_item:
+      form:
+        fields:
+          name:
+            label: Label
+            helper: Nom qui sera affiché comme élément du fil d'ariane
+          link:
+            label: URL
+            helper: l'URL vers laquelle renverra l'entrée du fil d'ariane
+
 
 

@@ -3,5 +3,7 @@
         <i class="glyphicon glyphicon-chevron-left"></i>
         {{ "ipc.back.form.return.label"|trans }}
     </a>
-    {{ form_widget(form) }}
+    {% if form is defined %}
+        {{ form_widget(form) }}
+    {% endif %}
 </div>

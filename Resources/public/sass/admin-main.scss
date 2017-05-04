@@ -52,6 +52,10 @@ body {
           }
         }
 
+        span.required {
+          color: red;
+        }
+
         p.helper {
           color: gray;
           font-size: 12px;

@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="{{ asset('bundles/ipc/css/ckeditor/css/ckeditor.css') }}" type="text/css" />
 {% endblock stylesheets %}
 
+{% block pre_content %}
+    {{ parent() }}
+    <div id="sticky-go-to-bottom" data-toggle="tooltip" data-placement="left"  title="Descendre en bas de page" class="sticky-button sticky-button-bottom">
+        <span class="glyphicon glyphicon-arrow-down" ></span>
+    </div>
+    <div id="sticky-go-to-top" data-toggle="tooltip" data-placement="left"  title="Remonter en haut de page" class="sticky-button sticky-button-top">
+        <span class="glyphicon glyphicon-arrow-up" ></span>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}

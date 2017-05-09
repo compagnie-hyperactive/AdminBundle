@@ -81,6 +81,7 @@
                                 {% endblock navbar %}
                             </div>
                         </header>
+                        {% block pre_content %}{% endblock %}
                         <div id="admin-screen" class="col-xs-12">
                             <h1 class="{% block title_classes %}{% endblock title_classes %}"><i class="glyphicon glyphicon-{% block page_icon %}{% endblock page_icon %}"></i>{% block h1 %}{{- block('title')  -}}{% endblock h1 %}</h1>
                             {% block title_right %}{% endblock title_right %}
@@ -96,6 +97,7 @@
                 <script src="{{ asset('bundles/lchadmin/js/jquery.admin.main.js') }}"></script>
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                 <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+                <script src="{{ asset('bundles/lchadmin/js/base.js') }}"></script>
             {% endblock %}
         </div>
     </body>

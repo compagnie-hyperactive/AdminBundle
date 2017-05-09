@@ -227,15 +227,15 @@ body {
 
 //sticky buttons
 .sticky-button {
-  z-index: 99;
-  border: none;
-  outline: none;
-  background-color: black;
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: black; /* Set a background color */
   opacity: 0.5;
-  color: white;
-  cursor: pointer;
-  padding: 12px 15px ;
-  border-radius: 10px;
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 12px 15px ; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
   position:fixed;
   right:30px;
 }

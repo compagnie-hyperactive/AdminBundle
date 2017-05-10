@@ -205,6 +205,23 @@ body {
             display: inline-block;
           }
         }
+
+        .pagination {
+          width: 100%;
+          text-align: center;
+          .pagination-buttons {
+            a {
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 3px;
+              &.current-page, &:hover {
+                background-color: #337ab7;
+                color: #FFF;
+                text-decoration: none;
+              }
+            }
+          }
+        }
       }
     }
   }

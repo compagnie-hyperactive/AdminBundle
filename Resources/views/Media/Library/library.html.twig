@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <select class="form-control">
                         {% for slug, mediaType in mediaTypes %}
-                            <option {% if(type == slug) %}selected="selected"{% endif %} value="{{ slug }}">{{ slug }}</option>
+                            <option {% if(type == slug) %}selected="selected"{% endif %} value="{{ slug }}">{{ mediaType.name|trans }}</option>
                         {% endfor %}
                     </select>
                 </div>

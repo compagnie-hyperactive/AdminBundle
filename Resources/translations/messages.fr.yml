@@ -8,6 +8,8 @@ lch:
     media:
       library:
         title: Librairie
+        detail_modal:
+          title: Détails du média
     select2:
       placeholder: "Choisissez un item dans la liste"
     menu:

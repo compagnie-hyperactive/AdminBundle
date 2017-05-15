@@ -8,10 +8,28 @@
 {%- block form_widget -%}
     {% import _self as helper %}
     <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
+
+        {% if form.vars.errors|length %}
+            {% set attr = attr|merge({ 'autofocus': null }) %}
+        {% endif %}
+
         {{- parent() -}}
         {{- block('lch_form_footer') -}}
     </div>
 {%- endblock form_widget -%}
+
+{%- block form_widget_simple -%}
+    {% import _self as helper %}
+    <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
+
+        {% if form.vars.errors|length %}
+            {% set attr = attr|merge({ 'autofocus': null }) %}
+        {% endif %}
+
+        {{- parent() -}}
+        {{- block('lch_form_footer') -}}
+    </div>
+{%- endblock form_widget_simple -%}
 
 {% block form_row -%}
     {% if(form.vars.attr.width is defined) %}
@@ -20,6 +38,7 @@
         <div class="form-row col-xs-12 no-gutter">
     {% endif %}
         {#{{- parent() -}}#}
+
         {% if form.vars.attr.no_label is not defined %}
             {{- form_label(form) -}}
         {% endif %}
@@ -130,19 +149,18 @@
     {{ block('form_widget') }}
 {%- endblock integer_widget -%}
 
-{#{%- block money_widget -%}#}
-    {#{{ money_pattern|replace({ '{{ widget }}': block('form_widget') })|raw }}#}
-    {#<div class="input-group">#}
-        {#{% set append = money_pattern starts with '{{' %}#}
-        {#{% if not append %}#}
-            {#<span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>#}
-        {#{% endif %}#}
-        {#{{- block('form_widget_simple') -}}#}
-        {#{% if append %}#}
-            {#<span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>#}
-        {#{% endif %}#}
-    {#</div>#}
-{#{%- endblock money_widget -%}#}
+{% block money_widget -%}
+    <div class="input-group">
+        {% set append = money_pattern starts with '{{' %}
+        {% if not append %}
+            <span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>
+        {% endif %}
+        {{- block('form_widget_simple') -}}
+        {% if append %}
+            <span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}':''}) }}</span>
+        {% endif %}
+    </div>
+{%- endblock money_widget %}
 
 {%- block url_widget -%}
     {%- set type = type|default('url') -%}

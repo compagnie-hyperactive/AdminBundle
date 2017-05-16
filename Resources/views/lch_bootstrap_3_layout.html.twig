@@ -74,7 +74,7 @@
     {% import _self as helper %}
     <div class="col-xs-12 {{ helper.labelWidth(form) }}">
         {% if required %}
-            <span class="pull-left required" title="This field is required">* </span>
+            <span class="required" title="This field is required">* </span>
         {% endif %}
         {% if(form.parent.parent != null and (form.parent.vars.attr.force_two_columns_presentation is not defined)) %}
             {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' col-xs-6')|trim}) -%}

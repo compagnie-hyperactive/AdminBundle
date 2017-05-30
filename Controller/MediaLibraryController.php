@@ -22,6 +22,7 @@ class MediaLibraryController extends Controller
      * @return Response
      */
     public function libraryAction(Request $request, string $type = Media::ALL) {
+
         return $this->render('@LchAdmin/Media/Library/library.html.twig', [
             'type' => $type,
             'mediaTypes' => $this->getParameter('lch.media.types'),

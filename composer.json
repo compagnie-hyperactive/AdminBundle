@@ -1,25 +1,25 @@
 {
   "name": "lch/admin-bundle",
   "type": "symfony-bundle",
-  "description": "Symfony LchAdminBundle",
-  "keywords": ["admin interface"],
+  "description": "Bring admin feature to Symfony. Use other LCH bundles",
+  "keywords": ["admin", "interface"],
   "homepage": "https://github.com/compagnie-hyperactive/AdminBundle",
   "license": "MIT",
   "authors": [
     {
       "name": "Nicolas BONNIOT",
-      "email": "nbonniot@compagnie-hyperactive.com"
+      "email": "nicolas@devgiants.fr"
     }
   ],
   "require": {
     "php": "^5.5.9 || ^7.0",
     "symfony/symfony": "~3.1",
     "friendsofsymfony/jsrouting-bundle": "^1.6",
-    "knplabs/knp-menu-bundle": "^2.1"
-    // Components
-    // Menu
-    // Media
-    // SEO
+    "knplabs/knp-menu-bundle": "^2.1",
+    "lch/components-bundle": "0.5",
+    "lch/menu-bundle": "0.5",
+    "lch/seo-bundle": "0.5",
+    "lch/media-bundle": "1.0.1"
   },
   "require-dev": {
     "doctrine/doctrine-bundle": "^1.3",

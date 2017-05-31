@@ -19,7 +19,7 @@
     "lch/components-bundle": "0.5.5",
     "lch/menu-bundle": "0.5",
     "lch/seo-bundle": "0.5",
-    "lch/media-bundle": "1.0.1"
+    "lch/media-bundle": "dev-master"
   },
   "require-dev": {
     "doctrine/doctrine-bundle": "^1.3",

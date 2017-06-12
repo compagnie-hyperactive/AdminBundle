@@ -34,7 +34,7 @@ class BreadcrumbItemType extends AbstractType
                 ]
             )
             ->add(
-                'link', UrlType::class,
+                'link', TextType::class,
                 [
                     'label' => static::ROOT_TRANSLATION_PATH.'.link.label',
                     'required' => false,

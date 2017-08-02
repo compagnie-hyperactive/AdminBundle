@@ -301,7 +301,7 @@
 
 {% macro widgetWidth(form) %}
     {% spaceless %}
-        {% if ((form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable and form.vars.attr.width is not defined) %}
+        {% if ((form.parent != null and form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable and form.vars.attr.width is not defined) %}
             col-md-10
         {% endif %}
     {% endspaceless %}
@@ -310,7 +310,7 @@
 
 {% macro labelWidth(form) %}
     {% spaceless %}
-        {% if (form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.attr.width is not defined %}
+        {% if (form.parent != null and form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.attr.width is not defined %}
             col-md-2
         {% endif %}
     {% endspaceless %}

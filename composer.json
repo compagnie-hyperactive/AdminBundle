@@ -18,7 +18,7 @@
     "knplabs/knp-menu-bundle": "^2.1",
     "lch/components-bundle": "dev-master",
     "lch/menu-bundle": "dev-master",
-    "lch/seo-bundle": "dev-master",
+    "lch/seo-bundle": "1.0",
     "lch/media-bundle": "dev-master"
   },
   "require-dev": {

@@ -15,5 +15,10 @@ Use attribute width to define row width
 force_two_columns_presentation to force classical 2 col presentation (in panel for example see SEO)
 attr no_label to hide label (see SEO)
 
+#### Override templates fragments
+LchAdminBundle provide several templates fragments
+- fragents/horizontalMenu.html.twig
+This is the top menu. Provide with a simple exemple, you can easily override it by simply create `app/Resources/LchAdminBundle/views/fragments/horizontalMenu.html.twig`
+
 ### Lists
 ### Menu organization

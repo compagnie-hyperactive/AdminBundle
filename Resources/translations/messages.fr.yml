@@ -1,5 +1,12 @@
 lch:
   admin:
+    button:
+      create: Créer
+      edit: Enregistrer
+      return: Retour à la liste
+    logout: Déconnexion
+    welcome: Bienvenue
+    change-password: Changement de mot de passe
     list:
       empty: La liste est vide.
       actions:

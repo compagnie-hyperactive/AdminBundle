@@ -60,7 +60,7 @@ class MenuController extends AdminController
             ->createForm(MenuType::class, $menu)
             // Add create button
             ->add('create', SubmitType::class, [
-                'label' => 'ipc.back.form.create.label'
+                'label' => 'lch.admin.button.create'
             ])
         ;
 
@@ -100,7 +100,7 @@ class MenuController extends AdminController
 
             // Add Edit button
             ->add('edit', SubmitType::class, [
-                'label' => 'ipc.back.form.edit.label',
+                'label' => 'lch.admin.button.edit',
                 'attr' => [
                     'icon' => 'edit'
                 ]

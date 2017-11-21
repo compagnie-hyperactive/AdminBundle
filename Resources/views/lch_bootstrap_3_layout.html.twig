@@ -4,7 +4,6 @@
     {{ block('form_errors') }}
 {%- endblock lch_form_footer -%}
 
-
 {%- block form_widget -%}
     {% import _self as helper %}
     <div class="col-xs-12 {{ helper.widgetWidth(form) }} widget">
@@ -90,6 +89,16 @@
     </div>
 {%- endblock form_label %}
 
+
+{%- block file_widget -%}
+
+    {% if form.vars['data'] != null %}
+        <a href="{{ getPath(form.parent.vars['data']) }}" download="download">Télécharger</a>
+    {% endif %}
+
+     {{ form_widget(form) }}
+
+{%- endblock file_widget %}
 
 {%- block collection_widget -%}
     {% spaceless %}
@@ -301,7 +310,14 @@
 
 {% macro widgetWidth(form) %}
     {% spaceless %}
-        {% if ((form.parent != null and form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.data is not iterable and form.vars.attr.width is not defined) %}
+        {% if (
+            (
+                form.parent != null and
+                form.parent.parent == null or
+                (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)
+            ) and form.vars.data is not iterable and form.vars.attr.width is not defined
+            and form.parent.vars.attr.width is not defined
+        ) %}
             col-md-10
         {% endif %}
     {% endspaceless %}
@@ -310,7 +326,13 @@
 
 {% macro labelWidth(form) %}
     {% spaceless %}
-        {% if (form.parent != null and form.parent.parent == null or (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)) and form.vars.attr.width is not defined %}
+        {% if
+            (
+                form.parent != null and form.parent.parent == null or
+                (form.parent.vars.attr.force_two_columns_presentation is defined and form.parent.vars.attr.force_two_columns_presentation == true)
+            ) and form.vars.attr.width is not defined
+            and form.parent.vars.attr.width is not defined
+        %}
             col-md-2
         {% endif %}
     {% endspaceless %}

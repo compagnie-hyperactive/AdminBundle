@@ -16,7 +16,7 @@
     "symfony/symfony": "~3.4",
     "friendsofsymfony/jsrouting-bundle": "^1.6",
     "knplabs/knp-menu-bundle": "^2.1",
-    "lch/components-bundle": "dev-master",
+    "lch/components-bundle": "2.0-ALPHA1",
     "lch/menu-bundle": "dev-master",
     "lch/seo-bundle": "1.0",
     "lch/media-bundle": "dev-master"

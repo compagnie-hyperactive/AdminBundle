@@ -12,8 +12,8 @@
     }
   ],
   "require": {
-    "php": "^5.5.9 || ^7.0",
-    "symfony/symfony": "~3.1",
+    "php": "^7.0.8",
+    "symfony/symfony": "~3.4",
     "friendsofsymfony/jsrouting-bundle": "^1.6",
     "knplabs/knp-menu-bundle": "^2.1",
     "lch/components-bundle": "dev-master",
